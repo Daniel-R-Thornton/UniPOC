@@ -1,0 +1,64 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type User @model {
+  id: ID!
+  username: String!
+  email: String!
+  ideas: [Idea] @hasMany
+  comments: [IdeaComment] @hasMany(indexName: "commentsByUser", fields: ["id"])
+  votes: [IdeaVote] @hasMany(indexName: "votesByUser", fields: ["id"])
+  createdAt: AWSDateTime!
+}
+
+type Idea @model {
+  id: ID!
+  name: String!
+  description: String!
+  attachments: [String]
+  comments: [IdeaComment] @hasMany(indexName: "commentsByIdea", fields: ["id"])
+  votes: [IdeaVote] @hasMany(indexName: "votesByIdea", fields: ["id"])
+}
+
+type IdeaComment @model {
+  id: ID!
+  content: String!
+  parentCommentId: ID
+  ideaId: ID! @index(name: "commentsByIdea")
+  userId: ID! @index(name: "commentsByUser")
+  Idea: Idea @belongsTo(fields: ["ideaId"])
+}
+
+type IdeaVote @model {
+  id: ID!
+  ideaId: ID! @index(name: "votesByIdea")
+  userId: ID! @index(name: "votesByUser")
+  Idea: Idea @belongsTo(fields: ["ideaId"])
+  User: User @belongsTo(fields: ["userId"])
+}
+
+type status @model {
+  id: ID!
+  name: String!
+  description: String!
+  color: String!
+  ideas: [Idea] @hasMany
+  nextSteps: [statusTransition]
+    @hasMany(indexName: "transitionByFromState", fields: ["id"])
+  previousSteps: [statusTransition]
+    @hasMany(indexName: "transitionByToState", fields: ["id"])
+
+  step: Int!
+}
+
+type statusTransition @model {
+  id: ID!
+  fromStatusId: ID!
+    @index(name: "transitionByFromState", sortKeyFields: ["toStatusId"])
+  toStatusId: ID!
+    @index(name: "transitionByToState", sortKeyFields: ["fromStatusId"])
+  fromStatus: status @belongsTo(fields: ["fromStatusId"])
+  toStatus: status @belongsTo(fields: ["toStatusId"])
+}

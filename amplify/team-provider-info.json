@@ -1,0 +1,35 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-unipoc-dev-133912-authRole",
+      "UnauthRoleArn": "arn:aws:iam::730335610538:role/amplify-unipoc-dev-133912-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::730335610538:role/amplify-unipoc-dev-133912-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-unipoc-dev-133912-deployment",
+      "UnauthRoleName": "amplify-unipoc-dev-133912-unauthRole",
+      "StackName": "amplify-unipoc-dev-133912",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:730335610538:stack/amplify-unipoc-dev-133912/38ec9ea0-ddbe-11ee-8420-0a30511a4009",
+      "AmplifyAppId": "d3u3eb4it4zhlw"
+    },
+    "categories": {
+      "function": {
+        "unipoc45a85c66DefineAuthChallenge": {},
+        "unipoc45a85c66CreateAuthChallenge": {},
+        "unipoc45a85c66VerifyAuthChallengeResponse": {
+          "RECAPTCHASECRET": ""
+        },
+        "unipoc45a85c66CustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "",
+          "EMAILMESSAGE": ""
+        },
+        "unipoc45a85c66PostConfirmation": {
+          "GROUP": "users"
+        }
+      },
+      "auth": {
+        "unipoc36bc00de": {}
+      }
+    }
+  }
+}
