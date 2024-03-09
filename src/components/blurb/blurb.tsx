@@ -54,7 +54,7 @@ const Blurb: React.FC<BlurbProps> = ({ image, body, imageAlt, aside }) => {
         <figure className="w-full col-span-2">
           <img
             src={image}
-            alt={imageAlt}
+            alt={imageAlt ?? image}
             className="w-full h-30 object-fill aspect-[4/1]"
           />
           <figcaption className="hidden">{imageAlt}</figcaption>

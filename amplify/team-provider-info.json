@@ -18,11 +18,11 @@
         "unipoc45a85c66": {},
         "unipoc36bc00de": {}
       },
-      "api": {
-        "unipoc": {}
-      },
       "storage": {
         "UniPocAttachments": {}
+      },
+      "api": {
+        "unipoc": {}
       }
     }
   }

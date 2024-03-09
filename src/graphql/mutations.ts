@@ -8,6 +8,120 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
+export const deleteIdea = /* GraphQL */ `mutation DeleteIdea(
+  $input: DeleteIdeaInput!
+  $condition: ModelIdeaConditionInput
+) {
+  deleteIdea(input: $input, condition: $condition) {
+    id
+    name
+    description
+    attachments
+    statusId
+    Status {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    Comments {
+      nextToken
+      __typename
+    }
+    votes {
+      nextToken
+      __typename
+    }
+    owner
+    createdAt
+    updatedAt
+    userIdeasId
+    statusIdeasId
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteIdeaMutationVariables,
+  APITypes.DeleteIdeaMutation
+>;
+export const deleteStatus = /* GraphQL */ `mutation DeleteStatus(
+  $input: DeleteStatusInput!
+  $condition: ModelStatusConditionInput
+) {
+  deleteStatus(input: $input, condition: $condition) {
+    id
+    name
+    description
+    color
+    ideas {
+      nextToken
+      __typename
+    }
+    nextSteps {
+      nextToken
+      __typename
+    }
+    previousSteps {
+      nextToken
+      __typename
+    }
+    step
+    owner
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteStatusMutationVariables,
+  APITypes.DeleteStatusMutation
+>;
+export const deleteStatusTransition =
+  /* GraphQL */ `mutation DeleteStatusTransition(
+  $input: DeleteStatusTransitionInput!
+  $condition: ModelStatusTransitionConditionInput
+) {
+  deleteStatusTransition(input: $input, condition: $condition) {
+    id
+    fromStatusId
+    toStatusId
+    fromStatus {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    toStatus {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    owner
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+    APITypes.DeleteStatusTransitionMutationVariables,
+    APITypes.DeleteStatusTransitionMutation
+  >;
 export const createUser = /* GraphQL */ `mutation CreateUser(
   $input: CreateUserInput!
   $condition: ModelUserConditionInput
@@ -29,6 +143,8 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
       __typename
     }
     createdAt
+    avatar
+    owner
     updatedAt
     __typename
   }
@@ -58,6 +174,8 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
       __typename
     }
     createdAt
+    avatar
+    owner
     updatedAt
     __typename
   }
@@ -87,6 +205,8 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
       __typename
     }
     createdAt
+    avatar
+    owner
     updatedAt
     __typename
   }
@@ -104,7 +224,19 @@ export const createIdea = /* GraphQL */ `mutation CreateIdea(
     name
     description
     attachments
-    comments {
+    statusId
+    Status {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    Comments {
       nextToken
       __typename
     }
@@ -112,6 +244,7 @@ export const createIdea = /* GraphQL */ `mutation CreateIdea(
       nextToken
       __typename
     }
+    owner
     createdAt
     updatedAt
     userIdeasId
@@ -132,7 +265,19 @@ export const updateIdea = /* GraphQL */ `mutation UpdateIdea(
     name
     description
     attachments
-    comments {
+    statusId
+    Status {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    Comments {
       nextToken
       __typename
     }
@@ -140,6 +285,7 @@ export const updateIdea = /* GraphQL */ `mutation UpdateIdea(
       nextToken
       __typename
     }
+    owner
     createdAt
     updatedAt
     userIdeasId
@@ -150,34 +296,6 @@ export const updateIdea = /* GraphQL */ `mutation UpdateIdea(
 ` as GeneratedMutation<
   APITypes.UpdateIdeaMutationVariables,
   APITypes.UpdateIdeaMutation
->;
-export const deleteIdea = /* GraphQL */ `mutation DeleteIdea(
-  $input: DeleteIdeaInput!
-  $condition: ModelIdeaConditionInput
-) {
-  deleteIdea(input: $input, condition: $condition) {
-    id
-    name
-    description
-    attachments
-    comments {
-      nextToken
-      __typename
-    }
-    votes {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    userIdeasId
-    statusIdeasId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteIdeaMutationVariables,
-  APITypes.DeleteIdeaMutation
 >;
 export const createIdeaComment = /* GraphQL */ `mutation CreateIdeaComment(
   $input: CreateIdeaCommentInput!
@@ -194,12 +312,40 @@ export const createIdeaComment = /* GraphQL */ `mutation CreateIdeaComment(
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
       statusIdeasId
       __typename
     }
+    User {
+      id
+      username
+      email
+      createdAt
+      avatar
+      owner
+      updatedAt
+      __typename
+    }
+    ParentComment {
+      id
+      content
+      parentCommentId
+      ideaId
+      userId
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    childComments {
+      nextToken
+      __typename
+    }
+    owner
     createdAt
     updatedAt
     __typename
@@ -224,12 +370,40 @@ export const updateIdeaComment = /* GraphQL */ `mutation UpdateIdeaComment(
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
       statusIdeasId
       __typename
     }
+    User {
+      id
+      username
+      email
+      createdAt
+      avatar
+      owner
+      updatedAt
+      __typename
+    }
+    ParentComment {
+      id
+      content
+      parentCommentId
+      ideaId
+      userId
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    childComments {
+      nextToken
+      __typename
+    }
+    owner
     createdAt
     updatedAt
     __typename
@@ -254,12 +428,40 @@ export const deleteIdeaComment = /* GraphQL */ `mutation DeleteIdeaComment(
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
       statusIdeasId
       __typename
     }
+    User {
+      id
+      username
+      email
+      createdAt
+      avatar
+      owner
+      updatedAt
+      __typename
+    }
+    ParentComment {
+      id
+      content
+      parentCommentId
+      ideaId
+      userId
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    childComments {
+      nextToken
+      __typename
+    }
+    owner
     createdAt
     updatedAt
     __typename
@@ -282,6 +484,8 @@ export const createIdeaVote = /* GraphQL */ `mutation CreateIdeaVote(
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
@@ -293,9 +497,12 @@ export const createIdeaVote = /* GraphQL */ `mutation CreateIdeaVote(
       username
       email
       createdAt
+      avatar
+      owner
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
@@ -318,6 +525,8 @@ export const updateIdeaVote = /* GraphQL */ `mutation UpdateIdeaVote(
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
@@ -329,9 +538,12 @@ export const updateIdeaVote = /* GraphQL */ `mutation UpdateIdeaVote(
       username
       email
       createdAt
+      avatar
+      owner
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
@@ -354,6 +566,8 @@ export const deleteIdeaVote = /* GraphQL */ `mutation DeleteIdeaVote(
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
@@ -365,9 +579,12 @@ export const deleteIdeaVote = /* GraphQL */ `mutation DeleteIdeaVote(
       username
       email
       createdAt
+      avatar
+      owner
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
@@ -399,6 +616,7 @@ export const createStatus = /* GraphQL */ `mutation CreateStatus(
       __typename
     }
     step
+    owner
     createdAt
     updatedAt
     __typename
@@ -430,6 +648,7 @@ export const updateStatus = /* GraphQL */ `mutation UpdateStatus(
       __typename
     }
     step
+    owner
     createdAt
     updatedAt
     __typename
@@ -438,37 +657,6 @@ export const updateStatus = /* GraphQL */ `mutation UpdateStatus(
 ` as GeneratedMutation<
   APITypes.UpdateStatusMutationVariables,
   APITypes.UpdateStatusMutation
->;
-export const deleteStatus = /* GraphQL */ `mutation DeleteStatus(
-  $input: DeleteStatusInput!
-  $condition: ModelStatusConditionInput
-) {
-  deleteStatus(input: $input, condition: $condition) {
-    id
-    name
-    description
-    color
-    ideas {
-      nextToken
-      __typename
-    }
-    nextSteps {
-      nextToken
-      __typename
-    }
-    previousSteps {
-      nextToken
-      __typename
-    }
-    step
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteStatusMutationVariables,
-  APITypes.DeleteStatusMutation
 >;
 export const createStatusTransition =
   /* GraphQL */ `mutation CreateStatusTransition(
@@ -485,6 +673,7 @@ export const createStatusTransition =
       description
       color
       step
+      owner
       createdAt
       updatedAt
       __typename
@@ -495,10 +684,12 @@ export const createStatusTransition =
       description
       color
       step
+      owner
       createdAt
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
@@ -523,6 +714,7 @@ export const updateStatusTransition =
       description
       color
       step
+      owner
       createdAt
       updatedAt
       __typename
@@ -533,10 +725,12 @@ export const updateStatusTransition =
       description
       color
       step
+      owner
       createdAt
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
@@ -545,42 +739,4 @@ export const updateStatusTransition =
 ` as GeneratedMutation<
     APITypes.UpdateStatusTransitionMutationVariables,
     APITypes.UpdateStatusTransitionMutation
-  >;
-export const deleteStatusTransition =
-  /* GraphQL */ `mutation DeleteStatusTransition(
-  $input: DeleteStatusTransitionInput!
-  $condition: ModelStatusTransitionConditionInput
-) {
-  deleteStatusTransition(input: $input, condition: $condition) {
-    id
-    fromStatusId
-    toStatusId
-    fromStatus {
-      id
-      name
-      description
-      color
-      step
-      createdAt
-      updatedAt
-      __typename
-    }
-    toStatus {
-      id
-      name
-      description
-      color
-      step
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-    APITypes.DeleteStatusTransitionMutationVariables,
-    APITypes.DeleteStatusTransitionMutation
   >;

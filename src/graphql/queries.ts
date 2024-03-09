@@ -26,6 +26,8 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
       __typename
     }
     createdAt
+    avatar
+    owner
     updatedAt
     __typename
   }
@@ -42,6 +44,8 @@ export const listUsers = /* GraphQL */ `query ListUsers(
       username
       email
       createdAt
+      avatar
+      owner
       updatedAt
       __typename
     }
@@ -56,7 +60,19 @@ export const getIdea = /* GraphQL */ `query GetIdea($id: ID!) {
     name
     description
     attachments
-    comments {
+    statusId
+    Status {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    Comments {
       nextToken
       __typename
     }
@@ -64,6 +80,7 @@ export const getIdea = /* GraphQL */ `query GetIdea($id: ID!) {
       nextToken
       __typename
     }
+    owner
     createdAt
     updatedAt
     userIdeasId
@@ -83,6 +100,8 @@ export const listIdeas = /* GraphQL */ `query ListIdeas(
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
@@ -106,12 +125,40 @@ export const getIdeaComment = /* GraphQL */ `query GetIdeaComment($id: ID!) {
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
       statusIdeasId
       __typename
     }
+    User {
+      id
+      username
+      email
+      createdAt
+      avatar
+      owner
+      updatedAt
+      __typename
+    }
+    ParentComment {
+      id
+      content
+      parentCommentId
+      ideaId
+      userId
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    childComments {
+      nextToken
+      __typename
+    }
+    owner
     createdAt
     updatedAt
     __typename
@@ -133,6 +180,7 @@ export const listIdeaComments = /* GraphQL */ `query ListIdeaComments(
       parentCommentId
       ideaId
       userId
+      owner
       createdAt
       updatedAt
       __typename
@@ -144,167 +192,6 @@ export const listIdeaComments = /* GraphQL */ `query ListIdeaComments(
 ` as GeneratedQuery<
   APITypes.ListIdeaCommentsQueryVariables,
   APITypes.ListIdeaCommentsQuery
->;
-export const getIdeaVote = /* GraphQL */ `query GetIdeaVote($id: ID!) {
-  getIdeaVote(id: $id) {
-    id
-    ideaId
-    userId
-    Idea {
-      id
-      name
-      description
-      attachments
-      createdAt
-      updatedAt
-      userIdeasId
-      statusIdeasId
-      __typename
-    }
-    User {
-      id
-      username
-      email
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetIdeaVoteQueryVariables,
-  APITypes.GetIdeaVoteQuery
->;
-export const listIdeaVotes = /* GraphQL */ `query ListIdeaVotes(
-  $filter: ModelIdeaVoteFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listIdeaVotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      ideaId
-      userId
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListIdeaVotesQueryVariables,
-  APITypes.ListIdeaVotesQuery
->;
-export const getStatus = /* GraphQL */ `query GetStatus($id: ID!) {
-  getStatus(id: $id) {
-    id
-    name
-    description
-    color
-    ideas {
-      nextToken
-      __typename
-    }
-    nextSteps {
-      nextToken
-      __typename
-    }
-    previousSteps {
-      nextToken
-      __typename
-    }
-    step
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedQuery<APITypes.GetStatusQueryVariables, APITypes.GetStatusQuery>;
-export const listStatuses = /* GraphQL */ `query ListStatuses(
-  $filter: ModelStatusFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listStatuses(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      name
-      description
-      color
-      step
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListStatusesQueryVariables,
-  APITypes.ListStatusesQuery
->;
-export const getStatusTransition =
-  /* GraphQL */ `query GetStatusTransition($id: ID!) {
-  getStatusTransition(id: $id) {
-    id
-    fromStatusId
-    toStatusId
-    fromStatus {
-      id
-      name
-      description
-      color
-      step
-      createdAt
-      updatedAt
-      __typename
-    }
-    toStatus {
-      id
-      name
-      description
-      color
-      step
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedQuery<
-    APITypes.GetStatusTransitionQueryVariables,
-    APITypes.GetStatusTransitionQuery
-  >;
-export const listStatusTransitions = /* GraphQL */ `query ListStatusTransitions(
-  $filter: ModelStatusTransitionFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listStatusTransitions(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      fromStatusId
-      toStatusId
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListStatusTransitionsQueryVariables,
-  APITypes.ListStatusTransitionsQuery
 >;
 export const ideaCommentsByIdeaId = /* GraphQL */ `query IdeaCommentsByIdeaId(
   $ideaId: ID!
@@ -326,6 +213,7 @@ export const ideaCommentsByIdeaId = /* GraphQL */ `query IdeaCommentsByIdeaId(
       parentCommentId
       ideaId
       userId
+      owner
       createdAt
       updatedAt
       __typename
@@ -358,6 +246,7 @@ export const ideaCommentsByUserId = /* GraphQL */ `query IdeaCommentsByUserId(
       parentCommentId
       ideaId
       userId
+      owner
       createdAt
       updatedAt
       __typename
@@ -369,6 +258,67 @@ export const ideaCommentsByUserId = /* GraphQL */ `query IdeaCommentsByUserId(
 ` as GeneratedQuery<
   APITypes.IdeaCommentsByUserIdQueryVariables,
   APITypes.IdeaCommentsByUserIdQuery
+>;
+export const getIdeaVote = /* GraphQL */ `query GetIdeaVote($id: ID!) {
+  getIdeaVote(id: $id) {
+    id
+    ideaId
+    userId
+    Idea {
+      id
+      name
+      description
+      attachments
+      statusId
+      owner
+      createdAt
+      updatedAt
+      userIdeasId
+      statusIdeasId
+      __typename
+    }
+    User {
+      id
+      username
+      email
+      createdAt
+      avatar
+      owner
+      updatedAt
+      __typename
+    }
+    owner
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetIdeaVoteQueryVariables,
+  APITypes.GetIdeaVoteQuery
+>;
+export const listIdeaVotes = /* GraphQL */ `query ListIdeaVotes(
+  $filter: ModelIdeaVoteFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listIdeaVotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      ideaId
+      userId
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListIdeaVotesQueryVariables,
+  APITypes.ListIdeaVotesQuery
 >;
 export const ideaVotesByIdeaId = /* GraphQL */ `query IdeaVotesByIdeaId(
   $ideaId: ID!
@@ -388,6 +338,7 @@ export const ideaVotesByIdeaId = /* GraphQL */ `query IdeaVotesByIdeaId(
       id
       ideaId
       userId
+      owner
       createdAt
       updatedAt
       __typename
@@ -418,6 +369,7 @@ export const ideaVotesByUserId = /* GraphQL */ `query IdeaVotesByUserId(
       id
       ideaId
       userId
+      owner
       createdAt
       updatedAt
       __typename
@@ -430,12 +382,124 @@ export const ideaVotesByUserId = /* GraphQL */ `query IdeaVotesByUserId(
   APITypes.IdeaVotesByUserIdQueryVariables,
   APITypes.IdeaVotesByUserIdQuery
 >;
+export const getStatus = /* GraphQL */ `query GetStatus($id: ID!) {
+  getStatus(id: $id) {
+    id
+    name
+    description
+    color
+    ideas {
+      nextToken
+      __typename
+    }
+    nextSteps {
+      nextToken
+      __typename
+    }
+    previousSteps {
+      nextToken
+      __typename
+    }
+    step
+    owner
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetStatusQueryVariables, APITypes.GetStatusQuery>;
+export const listStatuses = /* GraphQL */ `query ListStatuses(
+  $filter: ModelStatusFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listStatuses(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListStatusesQueryVariables,
+  APITypes.ListStatusesQuery
+>;
+export const getStatusTransition =
+  /* GraphQL */ `query GetStatusTransition($id: ID!) {
+  getStatusTransition(id: $id) {
+    id
+    fromStatusId
+    toStatusId
+    fromStatus {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    toStatus {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    owner
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+    APITypes.GetStatusTransitionQueryVariables,
+    APITypes.GetStatusTransitionQuery
+  >;
+export const listStatusTransitions = /* GraphQL */ `query ListStatusTransitions(
+  $filter: ModelStatusTransitionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listStatusTransitions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      fromStatusId
+      toStatusId
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListStatusTransitionsQueryVariables,
+  APITypes.ListStatusTransitionsQuery
+>;
 export const statusTransitionsByFromStatusIdAndToStatusId =
   /* GraphQL */ `query StatusTransitionsByFromStatusIdAndToStatusId(
   $fromStatusId: ID!
   $toStatusId: ModelIDKeyConditionInput
   $sortDirection: ModelSortDirection
-  $filter: ModelstatusTransitionFilterInput
+  $filter: ModelStatusTransitionFilterInput
   $limit: Int
   $nextToken: String
 ) {
@@ -451,6 +515,7 @@ export const statusTransitionsByFromStatusIdAndToStatusId =
       id
       fromStatusId
       toStatusId
+      owner
       createdAt
       updatedAt
       __typename
@@ -468,7 +533,7 @@ export const statusTransitionsByToStatusIdAndFromStatusId =
   $toStatusId: ID!
   $fromStatusId: ModelIDKeyConditionInput
   $sortDirection: ModelSortDirection
-  $filter: ModelstatusTransitionFilterInput
+  $filter: ModelStatusTransitionFilterInput
   $limit: Int
   $nextToken: String
 ) {
@@ -484,6 +549,7 @@ export const statusTransitionsByToStatusIdAndFromStatusId =
       id
       fromStatusId
       toStatusId
+      owner
       createdAt
       updatedAt
       __typename
