@@ -28,7 +28,15 @@
         }
       },
       "auth": {
-        "unipoc36bc00de": {}
+        "unipoc36bc00de": {},
+        "unipoc7adde9c6": {},
+        "userPoolGroups": {}
+      },
+      "api": {
+        "unipoc": {}
+      },
+      "storage": {
+        "UniPocAttachments": {}
       }
     }
   }

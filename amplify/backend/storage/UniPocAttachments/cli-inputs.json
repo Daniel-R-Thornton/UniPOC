@@ -1,0 +1,9 @@
+{
+  "resourceName": "UniPocAttachments",
+  "policyUUID": "27f8f69b",
+  "bucketName": "unipocstorageattachments",
+  "storageAccess": "authAndGuest",
+  "guestAccess": ["READ"],
+  "authAccess": ["CREATE_AND_UPDATE", "READ", "DELETE"],
+  "triggerFunction": "NONE"
+}

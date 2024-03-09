@@ -23,27 +23,52 @@
       "dependsOn": [],
       "frontendAuthConfig": {
         "mfaConfiguration": "OPTIONAL",
-        "mfaTypes": [
-          "SMS"
-        ],
+        "mfaTypes": ["SMS"],
         "passwordProtectionSettings": {
           "passwordPolicyCharacters": [],
           "passwordPolicyMinLength": 8
         },
-        "signupAttributes": [
-          "EMAIL",
-          "NAME"
-        ],
+        "signupAttributes": ["EMAIL", "NAME"],
         "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
+        "usernameAttributes": ["EMAIL"],
+        "verificationMechanisms": ["EMAIL"]
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    },
+    "unipoc7adde9c6": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": ["SMS"],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": ["EMAIL", "NAME"],
+        "socialProviders": [],
+        "usernameAttributes": ["EMAIL"],
+        "verificationMechanisms": ["EMAIL"]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    },
+    "userPoolGroups": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "unipoc7adde9c6"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito-UserPool-Groups"
     }
   },
   "function": {
@@ -116,6 +141,11 @@
     }
   },
   "storage": {
+    "UniPocAttachments": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    },
     "UniPocStorage": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",

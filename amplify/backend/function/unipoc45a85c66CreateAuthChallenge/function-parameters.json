@@ -1,8 +1,6 @@
 {
   "trigger": true,
-  "modules": [
-    "captcha-create-challenge"
-  ],
+  "modules": ["captcha-create-challenge"],
   "parentResource": "unipoc45a85c66",
   "functionName": "unipoc45a85c66CreateAuthChallenge",
   "resourceName": "unipoc45a85c66CreateAuthChallenge",

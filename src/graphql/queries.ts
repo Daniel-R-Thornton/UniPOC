@@ -249,7 +249,8 @@ export const listStatuses = /* GraphQL */ `query ListStatuses(
   APITypes.ListStatusesQueryVariables,
   APITypes.ListStatusesQuery
 >;
-export const getStatusTransition = /* GraphQL */ `query GetStatusTransition($id: ID!) {
+export const getStatusTransition =
+  /* GraphQL */ `query GetStatusTransition($id: ID!) {
   getStatusTransition(id: $id) {
     id
     fromStatusId
@@ -280,9 +281,9 @@ export const getStatusTransition = /* GraphQL */ `query GetStatusTransition($id:
   }
 }
 ` as GeneratedQuery<
-  APITypes.GetStatusTransitionQueryVariables,
-  APITypes.GetStatusTransitionQuery
->;
+    APITypes.GetStatusTransitionQueryVariables,
+    APITypes.GetStatusTransitionQuery
+  >;
 export const listStatusTransitions = /* GraphQL */ `query ListStatusTransitions(
   $filter: ModelStatusTransitionFilterInput
   $limit: Int
@@ -429,7 +430,8 @@ export const ideaVotesByUserId = /* GraphQL */ `query IdeaVotesByUserId(
   APITypes.IdeaVotesByUserIdQueryVariables,
   APITypes.IdeaVotesByUserIdQuery
 >;
-export const statusTransitionsByFromStatusIdAndToStatusId = /* GraphQL */ `query StatusTransitionsByFromStatusIdAndToStatusId(
+export const statusTransitionsByFromStatusIdAndToStatusId =
+  /* GraphQL */ `query StatusTransitionsByFromStatusIdAndToStatusId(
   $fromStatusId: ID!
   $toStatusId: ModelIDKeyConditionInput
   $sortDirection: ModelSortDirection
@@ -458,10 +460,11 @@ export const statusTransitionsByFromStatusIdAndToStatusId = /* GraphQL */ `query
   }
 }
 ` as GeneratedQuery<
-  APITypes.StatusTransitionsByFromStatusIdAndToStatusIdQueryVariables,
-  APITypes.StatusTransitionsByFromStatusIdAndToStatusIdQuery
->;
-export const statusTransitionsByToStatusIdAndFromStatusId = /* GraphQL */ `query StatusTransitionsByToStatusIdAndFromStatusId(
+    APITypes.StatusTransitionsByFromStatusIdAndToStatusIdQueryVariables,
+    APITypes.StatusTransitionsByFromStatusIdAndToStatusIdQuery
+  >;
+export const statusTransitionsByToStatusIdAndFromStatusId =
+  /* GraphQL */ `query StatusTransitionsByToStatusIdAndFromStatusId(
   $toStatusId: ID!
   $fromStatusId: ModelIDKeyConditionInput
   $sortDirection: ModelSortDirection
@@ -490,6 +493,6 @@ export const statusTransitionsByToStatusIdAndFromStatusId = /* GraphQL */ `query
   }
 }
 ` as GeneratedQuery<
-  APITypes.StatusTransitionsByToStatusIdAndFromStatusIdQueryVariables,
-  APITypes.StatusTransitionsByToStatusIdAndFromStatusIdQuery
->;
+    APITypes.StatusTransitionsByToStatusIdAndFromStatusIdQueryVariables,
+    APITypes.StatusTransitionsByToStatusIdAndFromStatusIdQuery
+  >;

@@ -1,8 +1,6 @@
 {
   "trigger": true,
-  "modules": [
-    "add-to-group"
-  ],
+  "modules": ["add-to-group"],
   "parentResource": "unipoc45a85c66",
   "functionName": "unipoc45a85c66PostConfirmation",
   "resourceName": "unipoc45a85c66PostConfirmation",

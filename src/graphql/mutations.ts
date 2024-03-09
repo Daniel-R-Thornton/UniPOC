@@ -470,7 +470,8 @@ export const deleteStatus = /* GraphQL */ `mutation DeleteStatus(
   APITypes.DeleteStatusMutationVariables,
   APITypes.DeleteStatusMutation
 >;
-export const createStatusTransition = /* GraphQL */ `mutation CreateStatusTransition(
+export const createStatusTransition =
+  /* GraphQL */ `mutation CreateStatusTransition(
   $input: CreateStatusTransitionInput!
   $condition: ModelStatusTransitionConditionInput
 ) {
@@ -504,10 +505,11 @@ export const createStatusTransition = /* GraphQL */ `mutation CreateStatusTransi
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateStatusTransitionMutationVariables,
-  APITypes.CreateStatusTransitionMutation
->;
-export const updateStatusTransition = /* GraphQL */ `mutation UpdateStatusTransition(
+    APITypes.CreateStatusTransitionMutationVariables,
+    APITypes.CreateStatusTransitionMutation
+  >;
+export const updateStatusTransition =
+  /* GraphQL */ `mutation UpdateStatusTransition(
   $input: UpdateStatusTransitionInput!
   $condition: ModelStatusTransitionConditionInput
 ) {
@@ -541,10 +543,11 @@ export const updateStatusTransition = /* GraphQL */ `mutation UpdateStatusTransi
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateStatusTransitionMutationVariables,
-  APITypes.UpdateStatusTransitionMutation
->;
-export const deleteStatusTransition = /* GraphQL */ `mutation DeleteStatusTransition(
+    APITypes.UpdateStatusTransitionMutationVariables,
+    APITypes.UpdateStatusTransitionMutation
+  >;
+export const deleteStatusTransition =
+  /* GraphQL */ `mutation DeleteStatusTransition(
   $input: DeleteStatusTransitionInput!
   $condition: ModelStatusTransitionConditionInput
 ) {
@@ -578,6 +581,6 @@ export const deleteStatusTransition = /* GraphQL */ `mutation DeleteStatusTransi
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteStatusTransitionMutationVariables,
-  APITypes.DeleteStatusTransitionMutation
->;
+    APITypes.DeleteStatusTransitionMutationVariables,
+    APITypes.DeleteStatusTransitionMutation
+  >;

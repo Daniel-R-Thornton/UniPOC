@@ -1,8 +1,6 @@
 {
   "trigger": true,
-  "modules": [
-    "captcha-verify"
-  ],
+  "modules": ["captcha-verify"],
   "parentResource": "unipoc45a85c66",
   "functionName": "unipoc45a85c66VerifyAuthChallengeResponse",
   "resourceName": "unipoc45a85c66VerifyAuthChallengeResponse",
