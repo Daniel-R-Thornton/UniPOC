@@ -12,26 +12,11 @@
       "AmplifyAppId": "d3u3eb4it4zhlw"
     },
     "categories": {
-      "function": {
-        "unipoc45a85c66DefineAuthChallenge": {},
-        "unipoc45a85c66CreateAuthChallenge": {},
-        "unipoc45a85c66VerifyAuthChallengeResponse": {
-          "RECAPTCHASECRET": ""
-        },
-        "unipoc45a85c66CustomMessage": {
-          "REDIRECTURL": "",
-          "EMAILSUBJECT": "",
-          "EMAILMESSAGE": ""
-        },
-        "unipoc45a85c66PostConfirmation": {
-          "GROUP": "users"
-        }
-      },
       "auth": {
-        "unipoc36bc00de": {},
         "unipoc7adde9c6": {},
         "userPoolGroups": {},
-        "unipoc45a85c66": {}
+        "unipoc45a85c66": {},
+        "unipoc36bc00de": {}
       },
       "api": {
         "unipoc": {}

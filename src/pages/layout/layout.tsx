@@ -17,8 +17,9 @@ const Layout: React.FC = () => {
         const currentUser = await getCurrentUser();
         setUser(currentUser);
       } catch (e) {
+        // errors here because the user is not logged in and calling getCurrentUser() will throw an error if the user is not logged in
+        // no need to log it to the console because it will be handled by the Auth component
         setUser(null);
-        console.log(e);
       }
     };
     fetchUser();
