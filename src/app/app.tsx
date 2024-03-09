@@ -1,7 +1,18 @@
+import Blurb from "components/blurb/blurb";
+import Header from "components/header/header";
+
 function App() {
   return (
     <main>
-      <header className="pt-16 z-10 relative max-w-screen-lg xl:max-w-screen-xl mx-auto"></header>
+      <Header logo="Logo" loginButton="Login" />
+      <Blurb
+        aside="Aside"
+        body={{
+          text: "Some text content here...",
+          subtitle: "Some subtext content here...",
+        }}
+        image="https://via.placeholder.com/150"
+      />
     </main>
   );
 }
