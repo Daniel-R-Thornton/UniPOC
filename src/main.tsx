@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./app/app";
+import App from "./pages/app/app";
 import "./index.css";
 import "@aws-amplify/ui-react/styles.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(

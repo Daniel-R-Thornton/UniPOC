@@ -1,0 +1,89 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`App test > Should match snapshot 1`] = `
+<DocumentFragment>
+  <header>
+    <header
+      class="flex justify-between items-center px-8 py-2 bg-gray-200 h-16 "
+    >
+      <div
+        class="logo"
+      >
+        Logo
+      </div>
+      <div
+        class="login-button"
+      >
+        <button
+          class="amplify-button amplify-field-group__control"
+          type="button"
+        >
+          Login
+        </button>
+      </div>
+    </header>
+  </header>
+  <main>
+    <div
+      class="grid h-full w-full grid-cols-1 md:grid-cols-2 items-center"
+    >
+      <div
+        class="col-span-1"
+      >
+        <article
+          class="flex flex-col px-10 m-10"
+        >
+          <figure
+            class="w-full"
+          >
+            <img
+              class="w-full h-30 object-fill aspect-[4/1]"
+              src="https://stlouis.citizenlab.co/uploads/e0d13d54-d706-4d53-af85-2f6c48c4c2fe/project/header_bg/1c7aa1cb-7c75-4293-8f9b-37fa72a73657/large_afd08489-8a69-4e30-9591-974d82716d46.jpeg"
+            />
+            <figcaption
+              class="hidden"
+            />
+          </figure>
+          <section
+            class="p-4 flex flex-col gap-2 "
+          >
+            <h2
+              class="text-lg"
+            >
+              Ideas Portal 
+            </h2>
+            <p
+              class=""
+            >
+              Are you ready to become an Idea Champion? Share your innovative ideas or build upon the ideas of others! This portal will remain open for the next year and we will refer to it throughout the engagement process. Participants whose ideas best address the challenges that our community faces will be invited to partner with us to further develop their ideas! We encourage one idea per card and building off the ideas of others. Only use the location feature if your idea is specific to a place. Remember, you can submit as many ideas as you want!
+            </p>
+          </section>
+        </article>
+      </div>
+      <div
+        class="col-span-1"
+      >
+        <div
+          class="flex flex-col gap-4 p-4 "
+        >
+          <div
+            class="bg-gray-200 p-4"
+          >
+            <h2
+              class="text-xl"
+            >
+              About Us
+            </h2>
+            <p
+              class="text-sm pt-1"
+            >
+              lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quisnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer />
+</DocumentFragment>
+`;

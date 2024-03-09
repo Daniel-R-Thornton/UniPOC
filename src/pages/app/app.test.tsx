@@ -5,7 +5,11 @@ import { describe, test, expect } from "vitest";
 describe("App test", () => {
   test("Should render when called", () => {
     const { getByRole } = render(App());
-    const header = getByRole("banner");
-    expect(header).toBeInTheDocument();
+    expect(getByRole("main")).toBeTruthy();
+  });
+
+  test("Should match snapshot", () => {
+    const { asFragment } = render(App());
+    expect(asFragment()).toMatchSnapshot();
   });
 });
