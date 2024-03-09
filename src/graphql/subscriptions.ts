@@ -20,7 +20,7 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
       nextToken
       __typename
     }
-    comments {
+    Comments {
       nextToken
       __typename
     }
@@ -51,7 +51,7 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
       nextToken
       __typename
     }
-    comments {
+    Comments {
       nextToken
       __typename
     }
@@ -82,7 +82,7 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
       nextToken
       __typename
     }
-    comments {
+    Comments {
       nextToken
       __typename
     }

@@ -1,7 +1,9 @@
 import { Button } from "@aws-amplify/ui-react";
 import Blurb from "components/blurb/blurb";
+import { useCreateIdea } from "hooks/idea/useIdea";
 
 function Home() {
+  const { mutateAsync: createIdea } = useCreateIdea();
   return (
     <>
       <Blurb
@@ -21,7 +23,22 @@ function Home() {
           Share your innovative ideas!
         </h2>
         <div className="flex justify-end">
-          <Button variation="primary" className="!text-sm">
+          <Button
+            variation="primary"
+            className="!text-sm"
+            onClick={() => {
+              createIdea({
+                input: {
+                  attachments: [],
+                  description: "test",
+                  name: "test",
+                  // statusId: "1",
+                  // userIdeasId: "me",
+                  // statusIdeasId: "1",
+                },
+              });
+            }}
+          >
             Submit an Idea
           </Button>
         </div>

@@ -11,7 +11,7 @@ export const getIdeaWithDepth =
     name
     description
     attachments
-    comments(limit: 100) {
+    Comments(limit: 100) {
       items {
         id   
       }

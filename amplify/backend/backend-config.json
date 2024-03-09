@@ -3,9 +3,7 @@
     "unipoc": {
       "dependsOn": [
         {
-          "attributes": [
-            "UserPoolId"
-          ],
+          "attributes": ["UserPoolId"],
           "category": "auth",
           "resourceName": "unipoc7adde9c6"
         }
@@ -40,24 +38,15 @@
       "dependsOn": [],
       "frontendAuthConfig": {
         "mfaConfiguration": "OPTIONAL",
-        "mfaTypes": [
-          "SMS"
-        ],
+        "mfaTypes": ["SMS"],
         "passwordProtectionSettings": {
           "passwordPolicyCharacters": [],
           "passwordPolicyMinLength": 8
         },
-        "signupAttributes": [
-          "EMAIL",
-          "NAME"
-        ],
+        "signupAttributes": ["EMAIL", "NAME"],
         "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
+        "usernameAttributes": ["EMAIL"],
+        "verificationMechanisms": ["EMAIL"]
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
@@ -67,24 +56,15 @@
       "dependsOn": [],
       "frontendAuthConfig": {
         "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
+        "mfaTypes": ["SMS"],
         "passwordProtectionSettings": {
           "passwordPolicyCharacters": [],
           "passwordPolicyMinLength": 8
         },
-        "signupAttributes": [
-          "EMAIL",
-          "NAME"
-        ],
+        "signupAttributes": ["EMAIL", "NAME"],
         "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
+        "usernameAttributes": ["EMAIL"],
+        "verificationMechanisms": ["EMAIL"]
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"

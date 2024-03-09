@@ -17,7 +17,7 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
       nextToken
       __typename
     }
-    comments {
+    Comments {
       nextToken
       __typename
     }

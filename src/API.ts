@@ -2,20 +2,129 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateUserInput = {
-  id?: string | null;
-  username: string;
-  email: string;
-  createdAt?: string | null;
+export type Idea = {
+  __typename: "Idea";
+  id: string;
+  name: string;
+  description: string;
+  attachments?: Array<string | null> | null;
+  statusId?: string | null;
+  Status?: Status | null;
+  Comments?: ModelIdeaCommentConnection | null;
+  votes?: ModelIdeaVoteConnection | null;
+  owner?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  userIdeasId?: string | null;
+  statusIdeasId?: string | null;
 };
 
-export type ModelUserConditionInput = {
-  username?: ModelStringInput | null;
-  email?: ModelStringInput | null;
-  createdAt?: ModelStringInput | null;
-  and?: Array<ModelUserConditionInput | null> | null;
-  or?: Array<ModelUserConditionInput | null> | null;
-  not?: ModelUserConditionInput | null;
+export type Status = {
+  __typename: "Status";
+  id: string;
+  name: string;
+  description: string;
+  color: string;
+  ideas?: ModelIdeaConnection | null;
+  nextSteps?: ModelStatusTransitionConnection | null;
+  previousSteps?: ModelStatusTransitionConnection | null;
+  step: number;
+  owner?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ModelIdeaConnection = {
+  __typename: "ModelIdeaConnection";
+  items: Array<Idea | null>;
+  nextToken?: string | null;
+};
+
+export type ModelStatusTransitionConnection = {
+  __typename: "ModelStatusTransitionConnection";
+  items: Array<StatusTransition | null>;
+  nextToken?: string | null;
+};
+
+export type StatusTransition = {
+  __typename: "StatusTransition";
+  id: string;
+  fromStatusId: string;
+  toStatusId: string;
+  fromStatus?: Status | null;
+  toStatus?: Status | null;
+  owner?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ModelIdeaCommentConnection = {
+  __typename: "ModelIdeaCommentConnection";
+  items: Array<IdeaComment | null>;
+  nextToken?: string | null;
+};
+
+export type IdeaComment = {
+  __typename: "IdeaComment";
+  id: string;
+  content: string;
+  parentCommentId?: string | null;
+  ideaId: string;
+  userId: string;
+  Idea?: Idea | null;
+  User?: User | null;
+  ParentComment?: IdeaComment | null;
+  childComments?: ModelIdeaCommentConnection | null;
+  owner?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type User = {
+  __typename: "User";
+  id: string;
+  username: string;
+  email?: string | null;
+  ideas?: ModelIdeaConnection | null;
+  Comments?: ModelIdeaCommentConnection | null;
+  votes?: ModelIdeaVoteConnection | null;
+  createdAt: string;
+  avatar?: string | null;
+  owner?: string | null;
+  updatedAt: string;
+};
+
+export type ModelIdeaVoteConnection = {
+  __typename: "ModelIdeaVoteConnection";
+  items: Array<IdeaVote | null>;
+  nextToken?: string | null;
+};
+
+export type IdeaVote = {
+  __typename: "IdeaVote";
+  id: string;
+  ideaId: string;
+  userId: string;
+  Idea?: Idea | null;
+  User?: User | null;
+  owner?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteStatusInput = {
+  id: string;
+};
+
+export type ModelStatusConditionInput = {
+  name?: ModelStringInput | null;
+  description?: ModelStringInput | null;
+  color?: ModelStringInput | null;
+  step?: ModelIntInput | null;
+  owner?: ModelStringInput | null;
+  and?: Array<ModelStatusConditionInput | null> | null;
+  or?: Array<ModelStatusConditionInput | null> | null;
+  not?: ModelStatusConditionInput | null;
 };
 
 export type ModelStringInput = {
@@ -57,102 +166,29 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
-export type User = {
-  __typename: "User";
-  id: string;
-  username: string;
-  email: string;
-  ideas?: ModelIdeaConnection | null;
-  comments?: ModelIdeaCommentConnection | null;
-  votes?: ModelIdeaVoteConnection | null;
-  createdAt: string;
-  updatedAt: string;
+export type ModelIntInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
 };
 
-export type ModelIdeaConnection = {
-  __typename: "ModelIdeaConnection";
-  items: Array<Idea | null>;
-  nextToken?: string | null;
-};
-
-export type Idea = {
-  __typename: "Idea";
-  id: string;
-  name: string;
-  description: string;
-  attachments?: Array<string | null> | null;
-  comments?: ModelIdeaCommentConnection | null;
-  votes?: ModelIdeaVoteConnection | null;
-  createdAt: string;
-  updatedAt: string;
-  userIdeasId?: string | null;
-  statusIdeasId?: string | null;
-};
-
-export type ModelIdeaCommentConnection = {
-  __typename: "ModelIdeaCommentConnection";
-  items: Array<IdeaComment | null>;
-  nextToken?: string | null;
-};
-
-export type IdeaComment = {
-  __typename: "IdeaComment";
-  id: string;
-  content: string;
-  parentCommentId?: string | null;
-  ideaId: string;
-  userId: string;
-  Idea?: Idea | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ModelIdeaVoteConnection = {
-  __typename: "ModelIdeaVoteConnection";
-  items: Array<IdeaVote | null>;
-  nextToken?: string | null;
-};
-
-export type IdeaVote = {
-  __typename: "IdeaVote";
-  id: string;
-  ideaId: string;
-  userId: string;
-  Idea?: Idea | null;
-  User?: User | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type UpdateUserInput = {
-  id: string;
-  username?: string | null;
-  email?: string | null;
-  createdAt?: string | null;
-};
-
-export type DeleteUserInput = {
+export type DeleteStatusTransitionInput = {
   id: string;
 };
 
-export type CreateIdeaInput = {
-  id?: string | null;
-  name: string;
-  description: string;
-  attachments?: Array<string | null> | null;
-  userIdeasId?: string | null;
-  statusIdeasId?: string | null;
-};
-
-export type ModelIdeaConditionInput = {
-  name?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  attachments?: ModelStringInput | null;
-  and?: Array<ModelIdeaConditionInput | null> | null;
-  or?: Array<ModelIdeaConditionInput | null> | null;
-  not?: ModelIdeaConditionInput | null;
-  userIdeasId?: ModelIDInput | null;
-  statusIdeasId?: ModelIDInput | null;
+export type ModelStatusTransitionConditionInput = {
+  fromStatusId?: ModelIDInput | null;
+  toStatusId?: ModelIDInput | null;
+  owner?: ModelStringInput | null;
+  and?: Array<ModelStatusTransitionConditionInput | null> | null;
+  or?: Array<ModelStatusTransitionConditionInput | null> | null;
+  not?: ModelStatusTransitionConditionInput | null;
 };
 
 export type ModelIDInput = {
@@ -171,11 +207,70 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
+export type CreateUserInput = {
+  id?: string | null;
+  username: string;
+  email?: string | null;
+  createdAt?: string | null;
+  avatar?: string | null;
+  owner?: string | null;
+};
+
+export type ModelUserConditionInput = {
+  username?: ModelStringInput | null;
+  email?: ModelStringInput | null;
+  createdAt?: ModelStringInput | null;
+  avatar?: ModelStringInput | null;
+  owner?: ModelStringInput | null;
+  and?: Array<ModelUserConditionInput | null> | null;
+  or?: Array<ModelUserConditionInput | null> | null;
+  not?: ModelUserConditionInput | null;
+};
+
+export type UpdateUserInput = {
+  id: string;
+  username?: string | null;
+  email?: string | null;
+  createdAt?: string | null;
+  avatar?: string | null;
+  owner?: string | null;
+};
+
+export type DeleteUserInput = {
+  id: string;
+};
+
+export type CreateIdeaInput = {
+  id?: string | null;
+  name: string;
+  description: string;
+  attachments?: Array<string | null> | null;
+  statusId?: string | null;
+  owner?: string | null;
+  userIdeasId?: string | null;
+  statusIdeasId?: string | null;
+};
+
+export type ModelIdeaConditionInput = {
+  name?: ModelStringInput | null;
+  description?: ModelStringInput | null;
+  attachments?: ModelStringInput | null;
+  statusId?: ModelIDInput | null;
+  owner?: ModelStringInput | null;
+  and?: Array<ModelIdeaConditionInput | null> | null;
+  or?: Array<ModelIdeaConditionInput | null> | null;
+  not?: ModelIdeaConditionInput | null;
+  userIdeasId?: ModelIDInput | null;
+  statusIdeasId?: ModelIDInput | null;
+};
+
 export type UpdateIdeaInput = {
   id: string;
   name?: string | null;
   description?: string | null;
   attachments?: Array<string | null> | null;
+  statusId?: string | null;
+  owner?: string | null;
   userIdeasId?: string | null;
   statusIdeasId?: string | null;
 };
@@ -190,6 +285,7 @@ export type CreateIdeaCommentInput = {
   parentCommentId?: string | null;
   ideaId: string;
   userId: string;
+  owner?: string | null;
 };
 
 export type ModelIdeaCommentConditionInput = {
@@ -197,6 +293,7 @@ export type ModelIdeaCommentConditionInput = {
   parentCommentId?: ModelIDInput | null;
   ideaId?: ModelIDInput | null;
   userId?: ModelIDInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelIdeaCommentConditionInput | null> | null;
   or?: Array<ModelIdeaCommentConditionInput | null> | null;
   not?: ModelIdeaCommentConditionInput | null;
@@ -208,6 +305,7 @@ export type UpdateIdeaCommentInput = {
   parentCommentId?: string | null;
   ideaId?: string | null;
   userId?: string | null;
+  owner?: string | null;
 };
 
 export type DeleteIdeaCommentInput = {
@@ -218,11 +316,13 @@ export type CreateIdeaVoteInput = {
   id?: string | null;
   ideaId: string;
   userId: string;
+  owner?: string | null;
 };
 
 export type ModelIdeaVoteConditionInput = {
   ideaId?: ModelIDInput | null;
   userId?: ModelIDInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelIdeaVoteConditionInput | null> | null;
   or?: Array<ModelIdeaVoteConditionInput | null> | null;
   not?: ModelIdeaVoteConditionInput | null;
@@ -232,6 +332,7 @@ export type UpdateIdeaVoteInput = {
   id: string;
   ideaId?: string | null;
   userId?: string | null;
+  owner?: string | null;
 };
 
 export type DeleteIdeaVoteInput = {
@@ -244,59 +345,7 @@ export type CreateStatusInput = {
   description: string;
   color: string;
   step: number;
-};
-
-export type ModelStatusConditionInput = {
-  name?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  color?: ModelStringInput | null;
-  step?: ModelIntInput | null;
-  and?: Array<ModelStatusConditionInput | null> | null;
-  or?: Array<ModelStatusConditionInput | null> | null;
-  not?: ModelStatusConditionInput | null;
-};
-
-export type ModelIntInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  between?: Array<number | null> | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-};
-
-export type status = {
-  __typename: "status";
-  id: string;
-  name: string;
-  description: string;
-  color: string;
-  ideas?: ModelIdeaConnection | null;
-  nextSteps?: ModelstatusTransitionConnection | null;
-  previousSteps?: ModelstatusTransitionConnection | null;
-  step: number;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ModelstatusTransitionConnection = {
-  __typename: "ModelstatusTransitionConnection";
-  items: Array<statusTransition | null>;
-  nextToken?: string | null;
-};
-
-export type statusTransition = {
-  __typename: "statusTransition";
-  id: string;
-  fromStatusId: string;
-  toStatusId: string;
-  fromStatus?: status | null;
-  toStatus?: status | null;
-  createdAt: string;
-  updatedAt: string;
+  owner?: string | null;
 };
 
 export type UpdateStatusInput = {
@@ -305,34 +354,21 @@ export type UpdateStatusInput = {
   description?: string | null;
   color?: string | null;
   step?: number | null;
-};
-
-export type DeleteStatusInput = {
-  id: string;
+  owner?: string | null;
 };
 
 export type CreateStatusTransitionInput = {
   id?: string | null;
   fromStatusId: string;
   toStatusId: string;
-};
-
-export type ModelStatusTransitionConditionInput = {
-  fromStatusId?: ModelIDInput | null;
-  toStatusId?: ModelIDInput | null;
-  and?: Array<ModelStatusTransitionConditionInput | null> | null;
-  or?: Array<ModelStatusTransitionConditionInput | null> | null;
-  not?: ModelStatusTransitionConditionInput | null;
+  owner?: string | null;
 };
 
 export type UpdateStatusTransitionInput = {
   id: string;
   fromStatusId?: string | null;
   toStatusId?: string | null;
-};
-
-export type DeleteStatusTransitionInput = {
-  id: string;
+  owner?: string | null;
 };
 
 export type ModelUserFilterInput = {
@@ -340,6 +376,8 @@ export type ModelUserFilterInput = {
   username?: ModelStringInput | null;
   email?: ModelStringInput | null;
   createdAt?: ModelStringInput | null;
+  avatar?: ModelStringInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
   not?: ModelUserFilterInput | null;
@@ -356,6 +394,8 @@ export type ModelIdeaFilterInput = {
   name?: ModelStringInput | null;
   description?: ModelStringInput | null;
   attachments?: ModelStringInput | null;
+  statusId?: ModelIDInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelIdeaFilterInput | null> | null;
   or?: Array<ModelIdeaFilterInput | null> | null;
   not?: ModelIdeaFilterInput | null;
@@ -369,15 +409,22 @@ export type ModelIdeaCommentFilterInput = {
   parentCommentId?: ModelIDInput | null;
   ideaId?: ModelIDInput | null;
   userId?: ModelIDInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelIdeaCommentFilterInput | null> | null;
   or?: Array<ModelIdeaCommentFilterInput | null> | null;
   not?: ModelIdeaCommentFilterInput | null;
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
 export type ModelIdeaVoteFilterInput = {
   id?: ModelIDInput | null;
   ideaId?: ModelIDInput | null;
   userId?: ModelIDInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelIdeaVoteFilterInput | null> | null;
   or?: Array<ModelIdeaVoteFilterInput | null> | null;
   not?: ModelIdeaVoteFilterInput | null;
@@ -389,6 +436,7 @@ export type ModelStatusFilterInput = {
   description?: ModelStringInput | null;
   color?: ModelStringInput | null;
   step?: ModelIntInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelStatusFilterInput | null> | null;
   or?: Array<ModelStatusFilterInput | null> | null;
   not?: ModelStatusFilterInput | null;
@@ -396,7 +444,7 @@ export type ModelStatusFilterInput = {
 
 export type ModelStatusConnection = {
   __typename: "ModelStatusConnection";
-  items: Array<status | null>;
+  items: Array<Status | null>;
   nextToken?: string | null;
 };
 
@@ -404,21 +452,11 @@ export type ModelStatusTransitionFilterInput = {
   id?: ModelIDInput | null;
   fromStatusId?: ModelIDInput | null;
   toStatusId?: ModelIDInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelStatusTransitionFilterInput | null> | null;
   or?: Array<ModelStatusTransitionFilterInput | null> | null;
   not?: ModelStatusTransitionFilterInput | null;
 };
-
-export type ModelStatusTransitionConnection = {
-  __typename: "ModelStatusTransitionConnection";
-  items: Array<statusTransition | null>;
-  nextToken?: string | null;
-};
-
-export enum ModelSortDirection {
-  ASC = "ASC",
-  DESC = "DESC",
-}
 
 export type ModelIDKeyConditionInput = {
   eq?: string | null;
@@ -430,20 +468,12 @@ export type ModelIDKeyConditionInput = {
   beginsWith?: string | null;
 };
 
-export type ModelstatusTransitionFilterInput = {
-  id?: ModelIDInput | null;
-  fromStatusId?: ModelIDInput | null;
-  toStatusId?: ModelIDInput | null;
-  and?: Array<ModelstatusTransitionFilterInput | null> | null;
-  or?: Array<ModelstatusTransitionFilterInput | null> | null;
-  not?: ModelstatusTransitionFilterInput | null;
-};
-
 export type ModelSubscriptionUserFilterInput = {
   id?: ModelSubscriptionIDInput | null;
   username?: ModelSubscriptionStringInput | null;
   email?: ModelSubscriptionStringInput | null;
   createdAt?: ModelSubscriptionStringInput | null;
+  avatar?: ModelSubscriptionStringInput | null;
   and?: Array<ModelSubscriptionUserFilterInput | null> | null;
   or?: Array<ModelSubscriptionUserFilterInput | null> | null;
 };
@@ -483,6 +513,7 @@ export type ModelSubscriptionIdeaFilterInput = {
   name?: ModelSubscriptionStringInput | null;
   description?: ModelSubscriptionStringInput | null;
   attachments?: ModelSubscriptionStringInput | null;
+  statusId?: ModelSubscriptionIDInput | null;
   and?: Array<ModelSubscriptionIdeaFilterInput | null> | null;
   or?: Array<ModelSubscriptionIdeaFilterInput | null> | null;
 };
@@ -535,6 +566,110 @@ export type ModelSubscriptionStatusTransitionFilterInput = {
   or?: Array<ModelSubscriptionStatusTransitionFilterInput | null> | null;
 };
 
+export type GetIdeaWithDepthQueryVariables = {
+  id: string;
+};
+
+export type GetIdeaWithDepthQuery = {
+  getIdea?: {
+    __typename: "Idea";
+    id: string;
+    name: string;
+    description: string;
+    attachments?: Array<string | null> | null;
+    Comments?: {
+      __typename: "ModelIdeaCommentConnection";
+      items: Array<{
+        __typename: "IdeaComment";
+        id: string;
+      } | null>;
+      nextToken?: string | null;
+    } | null;
+    votes?: {
+      __typename: "ModelIdeaVoteConnection";
+      items: Array<{
+        __typename: "IdeaVote";
+        id: string;
+      } | null>;
+      nextToken?: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+    userIdeasId?: string | null;
+    statusIdeasId?: string | null;
+  } | null;
+};
+
+export type DeleteStatusMutationVariables = {
+  input: DeleteStatusInput;
+  condition?: ModelStatusConditionInput | null;
+};
+
+export type DeleteStatusMutation = {
+  deleteStatus?: {
+    __typename: "Status";
+    id: string;
+    name: string;
+    description: string;
+    color: string;
+    ideas?: {
+      __typename: "ModelIdeaConnection";
+      nextToken?: string | null;
+    } | null;
+    nextSteps?: {
+      __typename: "ModelStatusTransitionConnection";
+      nextToken?: string | null;
+    } | null;
+    previousSteps?: {
+      __typename: "ModelStatusTransitionConnection";
+      nextToken?: string | null;
+    } | null;
+    step: number;
+    owner?: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type DeleteStatusTransitionMutationVariables = {
+  input: DeleteStatusTransitionInput;
+  condition?: ModelStatusTransitionConditionInput | null;
+};
+
+export type DeleteStatusTransitionMutation = {
+  deleteStatusTransition?: {
+    __typename: "StatusTransition";
+    id: string;
+    fromStatusId: string;
+    toStatusId: string;
+    fromStatus?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    toStatus?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    owner?: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
 export type CreateUserMutationVariables = {
   input: CreateUserInput;
   condition?: ModelUserConditionInput | null;
@@ -545,12 +680,12 @@ export type CreateUserMutation = {
     __typename: "User";
     id: string;
     username: string;
-    email: string;
+    email?: string | null;
     ideas?: {
       __typename: "ModelIdeaConnection";
       nextToken?: string | null;
     } | null;
-    comments?: {
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -559,6 +694,8 @@ export type CreateUserMutation = {
       nextToken?: string | null;
     } | null;
     createdAt: string;
+    avatar?: string | null;
+    owner?: string | null;
     updatedAt: string;
   } | null;
 };
@@ -573,12 +710,12 @@ export type UpdateUserMutation = {
     __typename: "User";
     id: string;
     username: string;
-    email: string;
+    email?: string | null;
     ideas?: {
       __typename: "ModelIdeaConnection";
       nextToken?: string | null;
     } | null;
-    comments?: {
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -587,6 +724,8 @@ export type UpdateUserMutation = {
       nextToken?: string | null;
     } | null;
     createdAt: string;
+    avatar?: string | null;
+    owner?: string | null;
     updatedAt: string;
   } | null;
 };
@@ -601,12 +740,12 @@ export type DeleteUserMutation = {
     __typename: "User";
     id: string;
     username: string;
-    email: string;
+    email?: string | null;
     ideas?: {
       __typename: "ModelIdeaConnection";
       nextToken?: string | null;
     } | null;
-    comments?: {
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -615,6 +754,8 @@ export type DeleteUserMutation = {
       nextToken?: string | null;
     } | null;
     createdAt: string;
+    avatar?: string | null;
+    owner?: string | null;
     updatedAt: string;
   } | null;
 };
@@ -631,7 +772,19 @@ export type CreateIdeaMutation = {
     name: string;
     description: string;
     attachments?: Array<string | null> | null;
-    comments?: {
+    statusId?: string | null;
+    Status?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -639,6 +792,7 @@ export type CreateIdeaMutation = {
       __typename: "ModelIdeaVoteConnection";
       nextToken?: string | null;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
     userIdeasId?: string | null;
@@ -658,7 +812,19 @@ export type UpdateIdeaMutation = {
     name: string;
     description: string;
     attachments?: Array<string | null> | null;
-    comments?: {
+    statusId?: string | null;
+    Status?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -666,6 +832,7 @@ export type UpdateIdeaMutation = {
       __typename: "ModelIdeaVoteConnection";
       nextToken?: string | null;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
     userIdeasId?: string | null;
@@ -685,7 +852,19 @@ export type DeleteIdeaMutation = {
     name: string;
     description: string;
     attachments?: Array<string | null> | null;
-    comments?: {
+    statusId?: string | null;
+    Status?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -693,6 +872,7 @@ export type DeleteIdeaMutation = {
       __typename: "ModelIdeaVoteConnection";
       nextToken?: string | null;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
     userIdeasId?: string | null;
@@ -719,11 +899,39 @@ export type CreateIdeaCommentMutation = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
       statusIdeasId?: string | null;
     } | null;
+    User?: {
+      __typename: "User";
+      id: string;
+      username: string;
+      email?: string | null;
+      createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
+      updatedAt: string;
+    } | null;
+    ParentComment?: {
+      __typename: "IdeaComment";
+      id: string;
+      content: string;
+      parentCommentId?: string | null;
+      ideaId: string;
+      userId: string;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    childComments?: {
+      __typename: "ModelIdeaCommentConnection";
+      nextToken?: string | null;
+    } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -748,11 +956,39 @@ export type UpdateIdeaCommentMutation = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
       statusIdeasId?: string | null;
     } | null;
+    User?: {
+      __typename: "User";
+      id: string;
+      username: string;
+      email?: string | null;
+      createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
+      updatedAt: string;
+    } | null;
+    ParentComment?: {
+      __typename: "IdeaComment";
+      id: string;
+      content: string;
+      parentCommentId?: string | null;
+      ideaId: string;
+      userId: string;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    childComments?: {
+      __typename: "ModelIdeaCommentConnection";
+      nextToken?: string | null;
+    } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -777,11 +1013,39 @@ export type DeleteIdeaCommentMutation = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
       statusIdeasId?: string | null;
     } | null;
+    User?: {
+      __typename: "User";
+      id: string;
+      username: string;
+      email?: string | null;
+      createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
+      updatedAt: string;
+    } | null;
+    ParentComment?: {
+      __typename: "IdeaComment";
+      id: string;
+      content: string;
+      parentCommentId?: string | null;
+      ideaId: string;
+      userId: string;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    childComments?: {
+      __typename: "ModelIdeaCommentConnection";
+      nextToken?: string | null;
+    } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -804,6 +1068,8 @@ export type CreateIdeaVoteMutation = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
@@ -813,10 +1079,13 @@ export type CreateIdeaVoteMutation = {
       __typename: "User";
       id: string;
       username: string;
-      email: string;
+      email?: string | null;
       createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
       updatedAt: string;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -839,6 +1108,8 @@ export type UpdateIdeaVoteMutation = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
@@ -848,10 +1119,13 @@ export type UpdateIdeaVoteMutation = {
       __typename: "User";
       id: string;
       username: string;
-      email: string;
+      email?: string | null;
       createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
       updatedAt: string;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -874,6 +1148,8 @@ export type DeleteIdeaVoteMutation = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
@@ -883,10 +1159,13 @@ export type DeleteIdeaVoteMutation = {
       __typename: "User";
       id: string;
       username: string;
-      email: string;
+      email?: string | null;
       createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
       updatedAt: string;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -899,7 +1178,7 @@ export type CreateStatusMutationVariables = {
 
 export type CreateStatusMutation = {
   createStatus?: {
-    __typename: "status";
+    __typename: "Status";
     id: string;
     name: string;
     description: string;
@@ -909,14 +1188,15 @@ export type CreateStatusMutation = {
       nextToken?: string | null;
     } | null;
     nextSteps?: {
-      __typename: "ModelstatusTransitionConnection";
+      __typename: "ModelStatusTransitionConnection";
       nextToken?: string | null;
     } | null;
     previousSteps?: {
-      __typename: "ModelstatusTransitionConnection";
+      __typename: "ModelStatusTransitionConnection";
       nextToken?: string | null;
     } | null;
     step: number;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -929,7 +1209,7 @@ export type UpdateStatusMutationVariables = {
 
 export type UpdateStatusMutation = {
   updateStatus?: {
-    __typename: "status";
+    __typename: "Status";
     id: string;
     name: string;
     description: string;
@@ -939,44 +1219,15 @@ export type UpdateStatusMutation = {
       nextToken?: string | null;
     } | null;
     nextSteps?: {
-      __typename: "ModelstatusTransitionConnection";
+      __typename: "ModelStatusTransitionConnection";
       nextToken?: string | null;
     } | null;
     previousSteps?: {
-      __typename: "ModelstatusTransitionConnection";
+      __typename: "ModelStatusTransitionConnection";
       nextToken?: string | null;
     } | null;
     step: number;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-};
-
-export type DeleteStatusMutationVariables = {
-  input: DeleteStatusInput;
-  condition?: ModelStatusConditionInput | null;
-};
-
-export type DeleteStatusMutation = {
-  deleteStatus?: {
-    __typename: "status";
-    id: string;
-    name: string;
-    description: string;
-    color: string;
-    ideas?: {
-      __typename: "ModelIdeaConnection";
-      nextToken?: string | null;
-    } | null;
-    nextSteps?: {
-      __typename: "ModelstatusTransitionConnection";
-      nextToken?: string | null;
-    } | null;
-    previousSteps?: {
-      __typename: "ModelstatusTransitionConnection";
-      nextToken?: string | null;
-    } | null;
-    step: number;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -989,30 +1240,33 @@ export type CreateStatusTransitionMutationVariables = {
 
 export type CreateStatusTransitionMutation = {
   createStatusTransition?: {
-    __typename: "statusTransition";
+    __typename: "StatusTransition";
     id: string;
     fromStatusId: string;
     toStatusId: string;
     fromStatus?: {
-      __typename: "status";
+      __typename: "Status";
       id: string;
       name: string;
       description: string;
       color: string;
       step: number;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
     toStatus?: {
-      __typename: "status";
+      __typename: "Status";
       id: string;
       name: string;
       description: string;
       color: string;
       step: number;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1025,66 +1279,33 @@ export type UpdateStatusTransitionMutationVariables = {
 
 export type UpdateStatusTransitionMutation = {
   updateStatusTransition?: {
-    __typename: "statusTransition";
+    __typename: "StatusTransition";
     id: string;
     fromStatusId: string;
     toStatusId: string;
     fromStatus?: {
-      __typename: "status";
+      __typename: "Status";
       id: string;
       name: string;
       description: string;
       color: string;
       step: number;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
     toStatus?: {
-      __typename: "status";
+      __typename: "Status";
       id: string;
       name: string;
       description: string;
       color: string;
       step: number;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-};
-
-export type DeleteStatusTransitionMutationVariables = {
-  input: DeleteStatusTransitionInput;
-  condition?: ModelStatusTransitionConditionInput | null;
-};
-
-export type DeleteStatusTransitionMutation = {
-  deleteStatusTransition?: {
-    __typename: "statusTransition";
-    id: string;
-    fromStatusId: string;
-    toStatusId: string;
-    fromStatus?: {
-      __typename: "status";
-      id: string;
-      name: string;
-      description: string;
-      color: string;
-      step: number;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    toStatus?: {
-      __typename: "status";
-      id: string;
-      name: string;
-      description: string;
-      color: string;
-      step: number;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1099,12 +1320,12 @@ export type GetUserQuery = {
     __typename: "User";
     id: string;
     username: string;
-    email: string;
+    email?: string | null;
     ideas?: {
       __typename: "ModelIdeaConnection";
       nextToken?: string | null;
     } | null;
-    comments?: {
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -1113,6 +1334,8 @@ export type GetUserQuery = {
       nextToken?: string | null;
     } | null;
     createdAt: string;
+    avatar?: string | null;
+    owner?: string | null;
     updatedAt: string;
   } | null;
 };
@@ -1130,8 +1353,10 @@ export type ListUsersQuery = {
       __typename: "User";
       id: string;
       username: string;
-      email: string;
+      email?: string | null;
       createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
       updatedAt: string;
     } | null>;
     nextToken?: string | null;
@@ -1149,7 +1374,19 @@ export type GetIdeaQuery = {
     name: string;
     description: string;
     attachments?: Array<string | null> | null;
-    comments?: {
+    statusId?: string | null;
+    Status?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -1157,6 +1394,7 @@ export type GetIdeaQuery = {
       __typename: "ModelIdeaVoteConnection";
       nextToken?: string | null;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
     userIdeasId?: string | null;
@@ -1179,6 +1417,8 @@ export type ListIdeasQuery = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
@@ -1206,11 +1446,39 @@ export type GetIdeaCommentQuery = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
       statusIdeasId?: string | null;
     } | null;
+    User?: {
+      __typename: "User";
+      id: string;
+      username: string;
+      email?: string | null;
+      createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
+      updatedAt: string;
+    } | null;
+    ParentComment?: {
+      __typename: "IdeaComment";
+      id: string;
+      content: string;
+      parentCommentId?: string | null;
+      ideaId: string;
+      userId: string;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    childComments?: {
+      __typename: "ModelIdeaCommentConnection";
+      nextToken?: string | null;
+    } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1232,169 +1500,7 @@ export type ListIdeaCommentsQuery = {
       parentCommentId?: string | null;
       ideaId: string;
       userId: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null>;
-    nextToken?: string | null;
-  } | null;
-};
-
-export type GetIdeaVoteQueryVariables = {
-  id: string;
-};
-
-export type GetIdeaVoteQuery = {
-  getIdeaVote?: {
-    __typename: "IdeaVote";
-    id: string;
-    ideaId: string;
-    userId: string;
-    Idea?: {
-      __typename: "Idea";
-      id: string;
-      name: string;
-      description: string;
-      attachments?: Array<string | null> | null;
-      createdAt: string;
-      updatedAt: string;
-      userIdeasId?: string | null;
-      statusIdeasId?: string | null;
-    } | null;
-    User?: {
-      __typename: "User";
-      id: string;
-      username: string;
-      email: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-};
-
-export type ListIdeaVotesQueryVariables = {
-  filter?: ModelIdeaVoteFilterInput | null;
-  limit?: number | null;
-  nextToken?: string | null;
-};
-
-export type ListIdeaVotesQuery = {
-  listIdeaVotes?: {
-    __typename: "ModelIdeaVoteConnection";
-    items: Array<{
-      __typename: "IdeaVote";
-      id: string;
-      ideaId: string;
-      userId: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null>;
-    nextToken?: string | null;
-  } | null;
-};
-
-export type GetStatusQueryVariables = {
-  id: string;
-};
-
-export type GetStatusQuery = {
-  getStatus?: {
-    __typename: "status";
-    id: string;
-    name: string;
-    description: string;
-    color: string;
-    ideas?: {
-      __typename: "ModelIdeaConnection";
-      nextToken?: string | null;
-    } | null;
-    nextSteps?: {
-      __typename: "ModelstatusTransitionConnection";
-      nextToken?: string | null;
-    } | null;
-    previousSteps?: {
-      __typename: "ModelstatusTransitionConnection";
-      nextToken?: string | null;
-    } | null;
-    step: number;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-};
-
-export type ListStatusesQueryVariables = {
-  filter?: ModelStatusFilterInput | null;
-  limit?: number | null;
-  nextToken?: string | null;
-};
-
-export type ListStatusesQuery = {
-  listStatuses?: {
-    __typename: "ModelStatusConnection";
-    items: Array<{
-      __typename: "status";
-      id: string;
-      name: string;
-      description: string;
-      color: string;
-      step: number;
-      createdAt: string;
-      updatedAt: string;
-    } | null>;
-    nextToken?: string | null;
-  } | null;
-};
-
-export type GetStatusTransitionQueryVariables = {
-  id: string;
-};
-
-export type GetStatusTransitionQuery = {
-  getStatusTransition?: {
-    __typename: "statusTransition";
-    id: string;
-    fromStatusId: string;
-    toStatusId: string;
-    fromStatus?: {
-      __typename: "status";
-      id: string;
-      name: string;
-      description: string;
-      color: string;
-      step: number;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    toStatus?: {
-      __typename: "status";
-      id: string;
-      name: string;
-      description: string;
-      color: string;
-      step: number;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-};
-
-export type ListStatusTransitionsQueryVariables = {
-  filter?: ModelStatusTransitionFilterInput | null;
-  limit?: number | null;
-  nextToken?: string | null;
-};
-
-export type ListStatusTransitionsQuery = {
-  listStatusTransitions?: {
-    __typename: "ModelStatusTransitionConnection";
-    items: Array<{
-      __typename: "statusTransition";
-      id: string;
-      fromStatusId: string;
-      toStatusId: string;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null>;
@@ -1420,6 +1526,7 @@ export type IdeaCommentsByIdeaIdQuery = {
       parentCommentId?: string | null;
       ideaId: string;
       userId: string;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null>;
@@ -1445,6 +1552,68 @@ export type IdeaCommentsByUserIdQuery = {
       parentCommentId?: string | null;
       ideaId: string;
       userId: string;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+};
+
+export type GetIdeaVoteQueryVariables = {
+  id: string;
+};
+
+export type GetIdeaVoteQuery = {
+  getIdeaVote?: {
+    __typename: "IdeaVote";
+    id: string;
+    ideaId: string;
+    userId: string;
+    Idea?: {
+      __typename: "Idea";
+      id: string;
+      name: string;
+      description: string;
+      attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+      userIdeasId?: string | null;
+      statusIdeasId?: string | null;
+    } | null;
+    User?: {
+      __typename: "User";
+      id: string;
+      username: string;
+      email?: string | null;
+      createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
+      updatedAt: string;
+    } | null;
+    owner?: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type ListIdeaVotesQueryVariables = {
+  filter?: ModelIdeaVoteFilterInput | null;
+  limit?: number | null;
+  nextToken?: string | null;
+};
+
+export type ListIdeaVotesQuery = {
+  listIdeaVotes?: {
+    __typename: "ModelIdeaVoteConnection";
+    items: Array<{
+      __typename: "IdeaVote";
+      id: string;
+      ideaId: string;
+      userId: string;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null>;
@@ -1468,6 +1637,7 @@ export type IdeaVotesByIdeaIdQuery = {
       id: string;
       ideaId: string;
       userId: string;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null>;
@@ -1491,6 +1661,121 @@ export type IdeaVotesByUserIdQuery = {
       id: string;
       ideaId: string;
       userId: string;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+};
+
+export type GetStatusQueryVariables = {
+  id: string;
+};
+
+export type GetStatusQuery = {
+  getStatus?: {
+    __typename: "Status";
+    id: string;
+    name: string;
+    description: string;
+    color: string;
+    ideas?: {
+      __typename: "ModelIdeaConnection";
+      nextToken?: string | null;
+    } | null;
+    nextSteps?: {
+      __typename: "ModelStatusTransitionConnection";
+      nextToken?: string | null;
+    } | null;
+    previousSteps?: {
+      __typename: "ModelStatusTransitionConnection";
+      nextToken?: string | null;
+    } | null;
+    step: number;
+    owner?: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type ListStatusesQueryVariables = {
+  filter?: ModelStatusFilterInput | null;
+  limit?: number | null;
+  nextToken?: string | null;
+};
+
+export type ListStatusesQuery = {
+  listStatuses?: {
+    __typename: "ModelStatusConnection";
+    items: Array<{
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+};
+
+export type GetStatusTransitionQueryVariables = {
+  id: string;
+};
+
+export type GetStatusTransitionQuery = {
+  getStatusTransition?: {
+    __typename: "StatusTransition";
+    id: string;
+    fromStatusId: string;
+    toStatusId: string;
+    fromStatus?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    toStatus?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    owner?: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type ListStatusTransitionsQueryVariables = {
+  filter?: ModelStatusTransitionFilterInput | null;
+  limit?: number | null;
+  nextToken?: string | null;
+};
+
+export type ListStatusTransitionsQuery = {
+  listStatusTransitions?: {
+    __typename: "ModelStatusTransitionConnection";
+    items: Array<{
+      __typename: "StatusTransition";
+      id: string;
+      fromStatusId: string;
+      toStatusId: string;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null>;
@@ -1502,19 +1787,20 @@ export type StatusTransitionsByFromStatusIdAndToStatusIdQueryVariables = {
   fromStatusId: string;
   toStatusId?: ModelIDKeyConditionInput | null;
   sortDirection?: ModelSortDirection | null;
-  filter?: ModelstatusTransitionFilterInput | null;
+  filter?: ModelStatusTransitionFilterInput | null;
   limit?: number | null;
   nextToken?: string | null;
 };
 
 export type StatusTransitionsByFromStatusIdAndToStatusIdQuery = {
   statusTransitionsByFromStatusIdAndToStatusId?: {
-    __typename: "ModelstatusTransitionConnection";
+    __typename: "ModelStatusTransitionConnection";
     items: Array<{
-      __typename: "statusTransition";
+      __typename: "StatusTransition";
       id: string;
       fromStatusId: string;
       toStatusId: string;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null>;
@@ -1526,19 +1812,20 @@ export type StatusTransitionsByToStatusIdAndFromStatusIdQueryVariables = {
   toStatusId: string;
   fromStatusId?: ModelIDKeyConditionInput | null;
   sortDirection?: ModelSortDirection | null;
-  filter?: ModelstatusTransitionFilterInput | null;
+  filter?: ModelStatusTransitionFilterInput | null;
   limit?: number | null;
   nextToken?: string | null;
 };
 
 export type StatusTransitionsByToStatusIdAndFromStatusIdQuery = {
   statusTransitionsByToStatusIdAndFromStatusId?: {
-    __typename: "ModelstatusTransitionConnection";
+    __typename: "ModelStatusTransitionConnection";
     items: Array<{
-      __typename: "statusTransition";
+      __typename: "StatusTransition";
       id: string;
       fromStatusId: string;
       toStatusId: string;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null>;
@@ -1548,6 +1835,7 @@ export type StatusTransitionsByToStatusIdAndFromStatusIdQuery = {
 
 export type OnCreateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnCreateUserSubscription = {
@@ -1555,12 +1843,12 @@ export type OnCreateUserSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    email: string;
+    email?: string | null;
     ideas?: {
       __typename: "ModelIdeaConnection";
       nextToken?: string | null;
     } | null;
-    comments?: {
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -1569,12 +1857,15 @@ export type OnCreateUserSubscription = {
       nextToken?: string | null;
     } | null;
     createdAt: string;
+    avatar?: string | null;
+    owner?: string | null;
     updatedAt: string;
   } | null;
 };
 
 export type OnUpdateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnUpdateUserSubscription = {
@@ -1582,12 +1873,12 @@ export type OnUpdateUserSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    email: string;
+    email?: string | null;
     ideas?: {
       __typename: "ModelIdeaConnection";
       nextToken?: string | null;
     } | null;
-    comments?: {
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -1596,12 +1887,15 @@ export type OnUpdateUserSubscription = {
       nextToken?: string | null;
     } | null;
     createdAt: string;
+    avatar?: string | null;
+    owner?: string | null;
     updatedAt: string;
   } | null;
 };
 
 export type OnDeleteUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnDeleteUserSubscription = {
@@ -1609,12 +1903,12 @@ export type OnDeleteUserSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    email: string;
+    email?: string | null;
     ideas?: {
       __typename: "ModelIdeaConnection";
       nextToken?: string | null;
     } | null;
-    comments?: {
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -1623,12 +1917,15 @@ export type OnDeleteUserSubscription = {
       nextToken?: string | null;
     } | null;
     createdAt: string;
+    avatar?: string | null;
+    owner?: string | null;
     updatedAt: string;
   } | null;
 };
 
 export type OnCreateIdeaSubscriptionVariables = {
   filter?: ModelSubscriptionIdeaFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnCreateIdeaSubscription = {
@@ -1638,7 +1935,19 @@ export type OnCreateIdeaSubscription = {
     name: string;
     description: string;
     attachments?: Array<string | null> | null;
-    comments?: {
+    statusId?: string | null;
+    Status?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -1646,6 +1955,7 @@ export type OnCreateIdeaSubscription = {
       __typename: "ModelIdeaVoteConnection";
       nextToken?: string | null;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
     userIdeasId?: string | null;
@@ -1655,6 +1965,7 @@ export type OnCreateIdeaSubscription = {
 
 export type OnUpdateIdeaSubscriptionVariables = {
   filter?: ModelSubscriptionIdeaFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnUpdateIdeaSubscription = {
@@ -1664,7 +1975,19 @@ export type OnUpdateIdeaSubscription = {
     name: string;
     description: string;
     attachments?: Array<string | null> | null;
-    comments?: {
+    statusId?: string | null;
+    Status?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -1672,6 +1995,7 @@ export type OnUpdateIdeaSubscription = {
       __typename: "ModelIdeaVoteConnection";
       nextToken?: string | null;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
     userIdeasId?: string | null;
@@ -1681,6 +2005,7 @@ export type OnUpdateIdeaSubscription = {
 
 export type OnDeleteIdeaSubscriptionVariables = {
   filter?: ModelSubscriptionIdeaFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnDeleteIdeaSubscription = {
@@ -1690,7 +2015,19 @@ export type OnDeleteIdeaSubscription = {
     name: string;
     description: string;
     attachments?: Array<string | null> | null;
-    comments?: {
+    statusId?: string | null;
+    Status?: {
+      __typename: "Status";
+      id: string;
+      name: string;
+      description: string;
+      color: string;
+      step: number;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    Comments?: {
       __typename: "ModelIdeaCommentConnection";
       nextToken?: string | null;
     } | null;
@@ -1698,6 +2035,7 @@ export type OnDeleteIdeaSubscription = {
       __typename: "ModelIdeaVoteConnection";
       nextToken?: string | null;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
     userIdeasId?: string | null;
@@ -1707,6 +2045,7 @@ export type OnDeleteIdeaSubscription = {
 
 export type OnCreateIdeaCommentSubscriptionVariables = {
   filter?: ModelSubscriptionIdeaCommentFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnCreateIdeaCommentSubscription = {
@@ -1723,11 +2062,39 @@ export type OnCreateIdeaCommentSubscription = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
       statusIdeasId?: string | null;
     } | null;
+    User?: {
+      __typename: "User";
+      id: string;
+      username: string;
+      email?: string | null;
+      createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
+      updatedAt: string;
+    } | null;
+    ParentComment?: {
+      __typename: "IdeaComment";
+      id: string;
+      content: string;
+      parentCommentId?: string | null;
+      ideaId: string;
+      userId: string;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    childComments?: {
+      __typename: "ModelIdeaCommentConnection";
+      nextToken?: string | null;
+    } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1735,6 +2102,7 @@ export type OnCreateIdeaCommentSubscription = {
 
 export type OnUpdateIdeaCommentSubscriptionVariables = {
   filter?: ModelSubscriptionIdeaCommentFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnUpdateIdeaCommentSubscription = {
@@ -1751,11 +2119,39 @@ export type OnUpdateIdeaCommentSubscription = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
       statusIdeasId?: string | null;
     } | null;
+    User?: {
+      __typename: "User";
+      id: string;
+      username: string;
+      email?: string | null;
+      createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
+      updatedAt: string;
+    } | null;
+    ParentComment?: {
+      __typename: "IdeaComment";
+      id: string;
+      content: string;
+      parentCommentId?: string | null;
+      ideaId: string;
+      userId: string;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    childComments?: {
+      __typename: "ModelIdeaCommentConnection";
+      nextToken?: string | null;
+    } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1763,6 +2159,7 @@ export type OnUpdateIdeaCommentSubscription = {
 
 export type OnDeleteIdeaCommentSubscriptionVariables = {
   filter?: ModelSubscriptionIdeaCommentFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnDeleteIdeaCommentSubscription = {
@@ -1779,11 +2176,39 @@ export type OnDeleteIdeaCommentSubscription = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
       statusIdeasId?: string | null;
     } | null;
+    User?: {
+      __typename: "User";
+      id: string;
+      username: string;
+      email?: string | null;
+      createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
+      updatedAt: string;
+    } | null;
+    ParentComment?: {
+      __typename: "IdeaComment";
+      id: string;
+      content: string;
+      parentCommentId?: string | null;
+      ideaId: string;
+      userId: string;
+      owner?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    childComments?: {
+      __typename: "ModelIdeaCommentConnection";
+      nextToken?: string | null;
+    } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1791,6 +2216,7 @@ export type OnDeleteIdeaCommentSubscription = {
 
 export type OnCreateIdeaVoteSubscriptionVariables = {
   filter?: ModelSubscriptionIdeaVoteFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnCreateIdeaVoteSubscription = {
@@ -1805,6 +2231,8 @@ export type OnCreateIdeaVoteSubscription = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
@@ -1814,10 +2242,13 @@ export type OnCreateIdeaVoteSubscription = {
       __typename: "User";
       id: string;
       username: string;
-      email: string;
+      email?: string | null;
       createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
       updatedAt: string;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1825,6 +2256,7 @@ export type OnCreateIdeaVoteSubscription = {
 
 export type OnUpdateIdeaVoteSubscriptionVariables = {
   filter?: ModelSubscriptionIdeaVoteFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnUpdateIdeaVoteSubscription = {
@@ -1839,6 +2271,8 @@ export type OnUpdateIdeaVoteSubscription = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
@@ -1848,10 +2282,13 @@ export type OnUpdateIdeaVoteSubscription = {
       __typename: "User";
       id: string;
       username: string;
-      email: string;
+      email?: string | null;
       createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
       updatedAt: string;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1859,6 +2296,7 @@ export type OnUpdateIdeaVoteSubscription = {
 
 export type OnDeleteIdeaVoteSubscriptionVariables = {
   filter?: ModelSubscriptionIdeaVoteFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnDeleteIdeaVoteSubscription = {
@@ -1873,6 +2311,8 @@ export type OnDeleteIdeaVoteSubscription = {
       name: string;
       description: string;
       attachments?: Array<string | null> | null;
+      statusId?: string | null;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
       userIdeasId?: string | null;
@@ -1882,10 +2322,13 @@ export type OnDeleteIdeaVoteSubscription = {
       __typename: "User";
       id: string;
       username: string;
-      email: string;
+      email?: string | null;
       createdAt: string;
+      avatar?: string | null;
+      owner?: string | null;
       updatedAt: string;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1893,11 +2336,12 @@ export type OnDeleteIdeaVoteSubscription = {
 
 export type OnCreateStatusSubscriptionVariables = {
   filter?: ModelSubscriptionStatusFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnCreateStatusSubscription = {
   onCreateStatus?: {
-    __typename: "status";
+    __typename: "Status";
     id: string;
     name: string;
     description: string;
@@ -1907,14 +2351,15 @@ export type OnCreateStatusSubscription = {
       nextToken?: string | null;
     } | null;
     nextSteps?: {
-      __typename: "ModelstatusTransitionConnection";
+      __typename: "ModelStatusTransitionConnection";
       nextToken?: string | null;
     } | null;
     previousSteps?: {
-      __typename: "ModelstatusTransitionConnection";
+      __typename: "ModelStatusTransitionConnection";
       nextToken?: string | null;
     } | null;
     step: number;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1922,11 +2367,12 @@ export type OnCreateStatusSubscription = {
 
 export type OnUpdateStatusSubscriptionVariables = {
   filter?: ModelSubscriptionStatusFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnUpdateStatusSubscription = {
   onUpdateStatus?: {
-    __typename: "status";
+    __typename: "Status";
     id: string;
     name: string;
     description: string;
@@ -1936,14 +2382,15 @@ export type OnUpdateStatusSubscription = {
       nextToken?: string | null;
     } | null;
     nextSteps?: {
-      __typename: "ModelstatusTransitionConnection";
+      __typename: "ModelStatusTransitionConnection";
       nextToken?: string | null;
     } | null;
     previousSteps?: {
-      __typename: "ModelstatusTransitionConnection";
+      __typename: "ModelStatusTransitionConnection";
       nextToken?: string | null;
     } | null;
     step: number;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1951,11 +2398,12 @@ export type OnUpdateStatusSubscription = {
 
 export type OnDeleteStatusSubscriptionVariables = {
   filter?: ModelSubscriptionStatusFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnDeleteStatusSubscription = {
   onDeleteStatus?: {
-    __typename: "status";
+    __typename: "Status";
     id: string;
     name: string;
     description: string;
@@ -1965,14 +2413,15 @@ export type OnDeleteStatusSubscription = {
       nextToken?: string | null;
     } | null;
     nextSteps?: {
-      __typename: "ModelstatusTransitionConnection";
+      __typename: "ModelStatusTransitionConnection";
       nextToken?: string | null;
     } | null;
     previousSteps?: {
-      __typename: "ModelstatusTransitionConnection";
+      __typename: "ModelStatusTransitionConnection";
       nextToken?: string | null;
     } | null;
     step: number;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1980,34 +2429,38 @@ export type OnDeleteStatusSubscription = {
 
 export type OnCreateStatusTransitionSubscriptionVariables = {
   filter?: ModelSubscriptionStatusTransitionFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnCreateStatusTransitionSubscription = {
   onCreateStatusTransition?: {
-    __typename: "statusTransition";
+    __typename: "StatusTransition";
     id: string;
     fromStatusId: string;
     toStatusId: string;
     fromStatus?: {
-      __typename: "status";
+      __typename: "Status";
       id: string;
       name: string;
       description: string;
       color: string;
       step: number;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
     toStatus?: {
-      __typename: "status";
+      __typename: "Status";
       id: string;
       name: string;
       description: string;
       color: string;
       step: number;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -2015,34 +2468,38 @@ export type OnCreateStatusTransitionSubscription = {
 
 export type OnUpdateStatusTransitionSubscriptionVariables = {
   filter?: ModelSubscriptionStatusTransitionFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnUpdateStatusTransitionSubscription = {
   onUpdateStatusTransition?: {
-    __typename: "statusTransition";
+    __typename: "StatusTransition";
     id: string;
     fromStatusId: string;
     toStatusId: string;
     fromStatus?: {
-      __typename: "status";
+      __typename: "Status";
       id: string;
       name: string;
       description: string;
       color: string;
       step: number;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
     toStatus?: {
-      __typename: "status";
+      __typename: "Status";
       id: string;
       name: string;
       description: string;
       color: string;
       step: number;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -2050,34 +2507,38 @@ export type OnUpdateStatusTransitionSubscription = {
 
 export type OnDeleteStatusTransitionSubscriptionVariables = {
   filter?: ModelSubscriptionStatusTransitionFilterInput | null;
+  owner?: string | null;
 };
 
 export type OnDeleteStatusTransitionSubscription = {
   onDeleteStatusTransition?: {
-    __typename: "statusTransition";
+    __typename: "StatusTransition";
     id: string;
     fromStatusId: string;
     toStatusId: string;
     fromStatus?: {
-      __typename: "status";
+      __typename: "Status";
       id: string;
       name: string;
       description: string;
       color: string;
       step: number;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
     toStatus?: {
-      __typename: "status";
+      __typename: "Status";
       id: string;
       name: string;
       description: string;
       color: string;
       step: number;
+      owner?: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
+    owner?: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
