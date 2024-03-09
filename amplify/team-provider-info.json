@@ -30,7 +30,8 @@
       "auth": {
         "unipoc36bc00de": {},
         "unipoc7adde9c6": {},
-        "userPoolGroups": {}
+        "userPoolGroups": {},
+        "unipoc45a85c66": {}
       },
       "api": {
         "unipoc": {}
