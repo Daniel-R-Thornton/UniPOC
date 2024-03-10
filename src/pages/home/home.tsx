@@ -1,9 +1,13 @@
 import { Button } from "@aws-amplify/ui-react";
 import Blurb from "components/blurb/blurb";
-import { useCreateIdea } from "hooks/idea/useIdea";
+import { useCreateIdea } from "hooks/idea/useCreateIdea";
+import { useIdeas } from "hooks/idea/useIdeas";
 
 function Home() {
   const { mutateAsync: createIdea } = useCreateIdea();
+  const { ideas } = useIdeas();
+
+  console.log(ideas);
   return (
     <>
       <Blurb
@@ -42,6 +46,24 @@ function Home() {
             Submit an Idea
           </Button>
         </div>
+      </div>
+      <div className="flex gap-2 flex-col p-10">
+        {ideas?.map((idea) => {
+          return (
+            <div
+              key={idea.id}
+              className="bg-slate-200 pb-2 outline outline-2 outline-blue-400 h-20"
+            >
+              <span>I AM AN ISSUE</span>
+              <h2>{idea.id}</h2>
+              <h3>{idea.name}</h3>
+              <p>{idea.description}</p>
+              <p>{idea.statusId}</p>
+              <p>{idea.userIdeasId}</p>
+              <p>{idea.statusIdeasId}</p>
+            </div>
+          );
+        })}
       </div>
     </>
   );

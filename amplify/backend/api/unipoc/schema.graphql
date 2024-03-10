@@ -1,8 +1,8 @@
 # This "input" configures a global authorization rule to enable public access to
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY {
-  globalAuthRule: AuthRule = { allow: public }
-} # FOR TESTING ONLY!
+# input AMPLIFY {
+#   globalAuthRule: AuthRule = { allow: public }
+# } # FOR TESTING ONLY!
 # Represents a user in the system, who can create ideas, comments and votes roles are implemented using Cognito
 type User
   @model
@@ -47,6 +47,12 @@ type Idea
   Comments: [IdeaComment] @hasMany(indexName: "commentsByIdea", fields: ["id"])
   votes: [IdeaVote] @hasMany(indexName: "votesByIdea", fields: ["id"])
   owner: String
+    @auth(
+      rules: [
+        { allow: owner, operations: [read, delete] }
+        { allow: groups, groups: ["Admin"] }
+      ]
+    )
 }
 
 # Represents a comment on an idea, which can have child comments

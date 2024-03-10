@@ -93,6 +93,9 @@ exports[`App test > Should match snapshot 1`] = `
         </button>
       </div>
     </div>
+    <div
+      class="flex gap-2 flex-col p-10"
+    />
   </main>
   <footer />
 </DocumentFragment>
