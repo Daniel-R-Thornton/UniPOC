@@ -5,6 +5,9 @@ import { listIdeas } from "../../../graphql/queries";
 import { APIError } from "../../../infrastructure/ApiError";
 import { generateClient } from "aws-amplify/api";
 import { fetchAuthSession } from "aws-amplify/auth";
+import { listIdeasWithoutOwners } from "../../../graphql/customQueries";
+import awsconfig from "../../../aws-exports";
+const apiKey = awsconfig.aws_appsync_apiKey;
 
 const client = generateClient();
 export async function listIdeasQuery(
@@ -18,9 +21,38 @@ export async function listIdeasQuery(
   const nextToken = context.pageParam;
   // get user token
   const userSession = await fetchAuthSession();
+  console.log("userSession", userSession);
   // get their jwt token
-  if (!userSession) {
-    throw new Error("No user found");
+  if (!userSession.tokens) {
+    try {
+      const result = (await client.graphql(
+        {
+          query: listIdeasWithoutOwners,
+          variables: { ...variables, nextToken },
+          authMode: "apiKey",
+        },
+        apiKey
+      )) as GraphQLResult<ListIdeasQuery>;
+      if (result.data?.listIdeas?.items) {
+        return {
+          ideas: result.data?.listIdeas.items as NonNullable<
+            ListIdeasQuery["listIdeas"]
+          >["items"] as Idea[],
+          nextToken: result.data?.listIdeas.nextToken,
+        };
+      }
+      return {
+        ideas: [] as Idea[],
+        nextToken: null,
+      };
+    } catch (e) {
+      //cast to APIError
+      const error = e as APIError;
+      if (error.errors) {
+        throw new Error(error.errors[0].message);
+      }
+      throw new Error("Error fetching ideas");
+    }
   }
   try {
     const result = (await client.graphql({

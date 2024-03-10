@@ -7,7 +7,6 @@ function Home() {
   const { mutateAsync: createIdea } = useCreateIdea();
   const { ideas } = useIdeas();
 
-  console.log(ideas);
   return (
     <>
       <Blurb
@@ -54,7 +53,7 @@ function Home() {
               key={idea.id}
               className="bg-slate-200 pb-2 outline outline-2 outline-blue-400 h-20"
             >
-              <span>I AM AN ISSUE</span>
+              <span>I AM AN IDEA!</span>
               <h2>{idea.id}</h2>
               <h3>{idea.name}</h3>
               <p>{idea.description}</p>
