@@ -1,5 +1,9 @@
 {
   "AppSyncApiName": "unipoc",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-03-09T09:12:29.431Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": ["authunipoc7adde9c6", "Outputs.UserPoolId"]
+  }
 }

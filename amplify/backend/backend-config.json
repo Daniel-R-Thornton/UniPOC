@@ -1,13 +1,28 @@
 {
   "api": {
     "unipoc": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": ["UserPoolId"],
+          "category": "auth",
+          "resourceName": "unipoc7adde9c6"
+        }
+      ],
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [],
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authunipoc7adde9c6"
+              }
+            }
+          ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDate": "2024-03-16T09:12:24.075Z",
+              "apiKeyExpirationDays": 7,
+              "description": "generalAccess"
             },
             "authenticationType": "API_KEY"
           }
@@ -69,75 +84,6 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Cognito-UserPool-Groups"
-    }
-  },
-  "function": {
-    "unipoc45a85c66CreateAuthChallenge": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "unipoc45a85c66CustomMessage": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "unipoc45a85c66DefineAuthChallenge": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "unipoc45a85c66PostConfirmation": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "unipoc45a85c66VerifyAuthChallengeResponse": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_unipoc45a85c66CustomMessage_EMAILMESSAGE": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "unipoc45a85c66CustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_unipoc45a85c66CustomMessage_EMAILSUBJECT": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "unipoc45a85c66CustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_unipoc45a85c66CustomMessage_REDIRECTURL": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "unipoc45a85c66CustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_unipoc45a85c66PostConfirmation_GROUP": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "unipoc45a85c66PostConfirmation"
-        }
-      ]
-    },
-    "AMPLIFY_function_unipoc45a85c66VerifyAuthChallengeResponse_RECAPTCHASECRET": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "unipoc45a85c66VerifyAuthChallengeResponse"
-        }
-      ]
     }
   },
   "storage": {

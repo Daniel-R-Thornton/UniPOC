@@ -8,9 +8,11 @@ type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionOutput: OutputType;
 };
 
-export const onCreateUser =
-  /* GraphQL */ `subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
-  onCreateUser(filter: $filter) {
+export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $owner: String
+) {
+  onCreateUser(filter: $filter, owner: $owner) {
     id
     username
     email
@@ -18,7 +20,7 @@ export const onCreateUser =
       nextToken
       __typename
     }
-    comments {
+    Comments {
       nextToken
       __typename
     }
@@ -27,17 +29,21 @@ export const onCreateUser =
       __typename
     }
     createdAt
+    avatar
+    owner
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnCreateUserSubscriptionVariables,
-    APITypes.OnCreateUserSubscription
-  >;
-export const onUpdateUser =
-  /* GraphQL */ `subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
-  onUpdateUser(filter: $filter) {
+  APITypes.OnCreateUserSubscriptionVariables,
+  APITypes.OnCreateUserSubscription
+>;
+export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $owner: String
+) {
+  onUpdateUser(filter: $filter, owner: $owner) {
     id
     username
     email
@@ -45,7 +51,7 @@ export const onUpdateUser =
       nextToken
       __typename
     }
-    comments {
+    Comments {
       nextToken
       __typename
     }
@@ -54,17 +60,21 @@ export const onUpdateUser =
       __typename
     }
     createdAt
+    avatar
+    owner
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnUpdateUserSubscriptionVariables,
-    APITypes.OnUpdateUserSubscription
-  >;
-export const onDeleteUser =
-  /* GraphQL */ `subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
-  onDeleteUser(filter: $filter) {
+  APITypes.OnUpdateUserSubscriptionVariables,
+  APITypes.OnUpdateUserSubscription
+>;
+export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $owner: String
+) {
+  onDeleteUser(filter: $filter, owner: $owner) {
     id
     username
     email
@@ -72,7 +82,7 @@ export const onDeleteUser =
       nextToken
       __typename
     }
-    comments {
+    Comments {
       nextToken
       __typename
     }
@@ -81,22 +91,38 @@ export const onDeleteUser =
       __typename
     }
     createdAt
+    avatar
+    owner
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnDeleteUserSubscriptionVariables,
-    APITypes.OnDeleteUserSubscription
-  >;
-export const onCreateIdea =
-  /* GraphQL */ `subscription OnCreateIdea($filter: ModelSubscriptionIdeaFilterInput) {
-  onCreateIdea(filter: $filter) {
+  APITypes.OnDeleteUserSubscriptionVariables,
+  APITypes.OnDeleteUserSubscription
+>;
+export const onCreateIdea = /* GraphQL */ `subscription OnCreateIdea(
+  $filter: ModelSubscriptionIdeaFilterInput
+  $owner: String
+) {
+  onCreateIdea(filter: $filter, owner: $owner) {
     id
     name
     description
     attachments
-    comments {
+    statusId
+    Status {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    Comments {
       nextToken
       __typename
     }
@@ -104,6 +130,7 @@ export const onCreateIdea =
       nextToken
       __typename
     }
+    owner
     createdAt
     updatedAt
     userIdeasId
@@ -112,17 +139,31 @@ export const onCreateIdea =
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnCreateIdeaSubscriptionVariables,
-    APITypes.OnCreateIdeaSubscription
-  >;
-export const onUpdateIdea =
-  /* GraphQL */ `subscription OnUpdateIdea($filter: ModelSubscriptionIdeaFilterInput) {
-  onUpdateIdea(filter: $filter) {
+  APITypes.OnCreateIdeaSubscriptionVariables,
+  APITypes.OnCreateIdeaSubscription
+>;
+export const onUpdateIdea = /* GraphQL */ `subscription OnUpdateIdea(
+  $filter: ModelSubscriptionIdeaFilterInput
+  $owner: String
+) {
+  onUpdateIdea(filter: $filter, owner: $owner) {
     id
     name
     description
     attachments
-    comments {
+    statusId
+    Status {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    Comments {
       nextToken
       __typename
     }
@@ -130,6 +171,7 @@ export const onUpdateIdea =
       nextToken
       __typename
     }
+    owner
     createdAt
     updatedAt
     userIdeasId
@@ -138,17 +180,31 @@ export const onUpdateIdea =
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnUpdateIdeaSubscriptionVariables,
-    APITypes.OnUpdateIdeaSubscription
-  >;
-export const onDeleteIdea =
-  /* GraphQL */ `subscription OnDeleteIdea($filter: ModelSubscriptionIdeaFilterInput) {
-  onDeleteIdea(filter: $filter) {
+  APITypes.OnUpdateIdeaSubscriptionVariables,
+  APITypes.OnUpdateIdeaSubscription
+>;
+export const onDeleteIdea = /* GraphQL */ `subscription OnDeleteIdea(
+  $filter: ModelSubscriptionIdeaFilterInput
+  $owner: String
+) {
+  onDeleteIdea(filter: $filter, owner: $owner) {
     id
     name
     description
     attachments
-    comments {
+    statusId
+    Status {
+      id
+      name
+      description
+      color
+      step
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    Comments {
       nextToken
       __typename
     }
@@ -156,6 +212,7 @@ export const onDeleteIdea =
       nextToken
       __typename
     }
+    owner
     createdAt
     updatedAt
     userIdeasId
@@ -164,14 +221,15 @@ export const onDeleteIdea =
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnDeleteIdeaSubscriptionVariables,
-    APITypes.OnDeleteIdeaSubscription
-  >;
+  APITypes.OnDeleteIdeaSubscriptionVariables,
+  APITypes.OnDeleteIdeaSubscription
+>;
 export const onCreateIdeaComment =
   /* GraphQL */ `subscription OnCreateIdeaComment(
   $filter: ModelSubscriptionIdeaCommentFilterInput
+  $owner: String
 ) {
-  onCreateIdeaComment(filter: $filter) {
+  onCreateIdeaComment(filter: $filter, owner: $owner) {
     id
     content
     parentCommentId
@@ -182,12 +240,40 @@ export const onCreateIdeaComment =
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
       statusIdeasId
       __typename
     }
+    User {
+      id
+      username
+      email
+      createdAt
+      avatar
+      owner
+      updatedAt
+      __typename
+    }
+    ParentComment {
+      id
+      content
+      parentCommentId
+      ideaId
+      userId
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    childComments {
+      nextToken
+      __typename
+    }
+    owner
     createdAt
     updatedAt
     __typename
@@ -200,8 +286,9 @@ export const onCreateIdeaComment =
 export const onUpdateIdeaComment =
   /* GraphQL */ `subscription OnUpdateIdeaComment(
   $filter: ModelSubscriptionIdeaCommentFilterInput
+  $owner: String
 ) {
-  onUpdateIdeaComment(filter: $filter) {
+  onUpdateIdeaComment(filter: $filter, owner: $owner) {
     id
     content
     parentCommentId
@@ -212,12 +299,40 @@ export const onUpdateIdeaComment =
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
       statusIdeasId
       __typename
     }
+    User {
+      id
+      username
+      email
+      createdAt
+      avatar
+      owner
+      updatedAt
+      __typename
+    }
+    ParentComment {
+      id
+      content
+      parentCommentId
+      ideaId
+      userId
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    childComments {
+      nextToken
+      __typename
+    }
+    owner
     createdAt
     updatedAt
     __typename
@@ -230,8 +345,9 @@ export const onUpdateIdeaComment =
 export const onDeleteIdeaComment =
   /* GraphQL */ `subscription OnDeleteIdeaComment(
   $filter: ModelSubscriptionIdeaCommentFilterInput
+  $owner: String
 ) {
-  onDeleteIdeaComment(filter: $filter) {
+  onDeleteIdeaComment(filter: $filter, owner: $owner) {
     id
     content
     parentCommentId
@@ -242,12 +358,40 @@ export const onDeleteIdeaComment =
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
       statusIdeasId
       __typename
     }
+    User {
+      id
+      username
+      email
+      createdAt
+      avatar
+      owner
+      updatedAt
+      __typename
+    }
+    ParentComment {
+      id
+      content
+      parentCommentId
+      ideaId
+      userId
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    childComments {
+      nextToken
+      __typename
+    }
+    owner
     createdAt
     updatedAt
     __typename
@@ -257,9 +401,11 @@ export const onDeleteIdeaComment =
     APITypes.OnDeleteIdeaCommentSubscriptionVariables,
     APITypes.OnDeleteIdeaCommentSubscription
   >;
-export const onCreateIdeaVote =
-  /* GraphQL */ `subscription OnCreateIdeaVote($filter: ModelSubscriptionIdeaVoteFilterInput) {
-  onCreateIdeaVote(filter: $filter) {
+export const onCreateIdeaVote = /* GraphQL */ `subscription OnCreateIdeaVote(
+  $filter: ModelSubscriptionIdeaVoteFilterInput
+  $owner: String
+) {
+  onCreateIdeaVote(filter: $filter, owner: $owner) {
     id
     ideaId
     userId
@@ -268,6 +414,8 @@ export const onCreateIdeaVote =
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
@@ -279,21 +427,26 @@ export const onCreateIdeaVote =
       username
       email
       createdAt
+      avatar
+      owner
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnCreateIdeaVoteSubscriptionVariables,
-    APITypes.OnCreateIdeaVoteSubscription
-  >;
-export const onUpdateIdeaVote =
-  /* GraphQL */ `subscription OnUpdateIdeaVote($filter: ModelSubscriptionIdeaVoteFilterInput) {
-  onUpdateIdeaVote(filter: $filter) {
+  APITypes.OnCreateIdeaVoteSubscriptionVariables,
+  APITypes.OnCreateIdeaVoteSubscription
+>;
+export const onUpdateIdeaVote = /* GraphQL */ `subscription OnUpdateIdeaVote(
+  $filter: ModelSubscriptionIdeaVoteFilterInput
+  $owner: String
+) {
+  onUpdateIdeaVote(filter: $filter, owner: $owner) {
     id
     ideaId
     userId
@@ -302,6 +455,8 @@ export const onUpdateIdeaVote =
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
@@ -313,21 +468,26 @@ export const onUpdateIdeaVote =
       username
       email
       createdAt
+      avatar
+      owner
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnUpdateIdeaVoteSubscriptionVariables,
-    APITypes.OnUpdateIdeaVoteSubscription
-  >;
-export const onDeleteIdeaVote =
-  /* GraphQL */ `subscription OnDeleteIdeaVote($filter: ModelSubscriptionIdeaVoteFilterInput) {
-  onDeleteIdeaVote(filter: $filter) {
+  APITypes.OnUpdateIdeaVoteSubscriptionVariables,
+  APITypes.OnUpdateIdeaVoteSubscription
+>;
+export const onDeleteIdeaVote = /* GraphQL */ `subscription OnDeleteIdeaVote(
+  $filter: ModelSubscriptionIdeaVoteFilterInput
+  $owner: String
+) {
+  onDeleteIdeaVote(filter: $filter, owner: $owner) {
     id
     ideaId
     userId
@@ -336,6 +496,8 @@ export const onDeleteIdeaVote =
       name
       description
       attachments
+      statusId
+      owner
       createdAt
       updatedAt
       userIdeasId
@@ -347,21 +509,26 @@ export const onDeleteIdeaVote =
       username
       email
       createdAt
+      avatar
+      owner
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnDeleteIdeaVoteSubscriptionVariables,
-    APITypes.OnDeleteIdeaVoteSubscription
-  >;
-export const onCreateStatus =
-  /* GraphQL */ `subscription OnCreateStatus($filter: ModelSubscriptionStatusFilterInput) {
-  onCreateStatus(filter: $filter) {
+  APITypes.OnDeleteIdeaVoteSubscriptionVariables,
+  APITypes.OnDeleteIdeaVoteSubscription
+>;
+export const onCreateStatus = /* GraphQL */ `subscription OnCreateStatus(
+  $filter: ModelSubscriptionStatusFilterInput
+  $owner: String
+) {
+  onCreateStatus(filter: $filter, owner: $owner) {
     id
     name
     description
@@ -379,18 +546,21 @@ export const onCreateStatus =
       __typename
     }
     step
+    owner
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnCreateStatusSubscriptionVariables,
-    APITypes.OnCreateStatusSubscription
-  >;
-export const onUpdateStatus =
-  /* GraphQL */ `subscription OnUpdateStatus($filter: ModelSubscriptionStatusFilterInput) {
-  onUpdateStatus(filter: $filter) {
+  APITypes.OnCreateStatusSubscriptionVariables,
+  APITypes.OnCreateStatusSubscription
+>;
+export const onUpdateStatus = /* GraphQL */ `subscription OnUpdateStatus(
+  $filter: ModelSubscriptionStatusFilterInput
+  $owner: String
+) {
+  onUpdateStatus(filter: $filter, owner: $owner) {
     id
     name
     description
@@ -408,18 +578,21 @@ export const onUpdateStatus =
       __typename
     }
     step
+    owner
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnUpdateStatusSubscriptionVariables,
-    APITypes.OnUpdateStatusSubscription
-  >;
-export const onDeleteStatus =
-  /* GraphQL */ `subscription OnDeleteStatus($filter: ModelSubscriptionStatusFilterInput) {
-  onDeleteStatus(filter: $filter) {
+  APITypes.OnUpdateStatusSubscriptionVariables,
+  APITypes.OnUpdateStatusSubscription
+>;
+export const onDeleteStatus = /* GraphQL */ `subscription OnDeleteStatus(
+  $filter: ModelSubscriptionStatusFilterInput
+  $owner: String
+) {
+  onDeleteStatus(filter: $filter, owner: $owner) {
     id
     name
     description
@@ -437,20 +610,22 @@ export const onDeleteStatus =
       __typename
     }
     step
+    owner
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-    APITypes.OnDeleteStatusSubscriptionVariables,
-    APITypes.OnDeleteStatusSubscription
-  >;
+  APITypes.OnDeleteStatusSubscriptionVariables,
+  APITypes.OnDeleteStatusSubscription
+>;
 export const onCreateStatusTransition =
   /* GraphQL */ `subscription OnCreateStatusTransition(
   $filter: ModelSubscriptionStatusTransitionFilterInput
+  $owner: String
 ) {
-  onCreateStatusTransition(filter: $filter) {
+  onCreateStatusTransition(filter: $filter, owner: $owner) {
     id
     fromStatusId
     toStatusId
@@ -460,6 +635,7 @@ export const onCreateStatusTransition =
       description
       color
       step
+      owner
       createdAt
       updatedAt
       __typename
@@ -470,10 +646,12 @@ export const onCreateStatusTransition =
       description
       color
       step
+      owner
       createdAt
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
@@ -486,8 +664,9 @@ export const onCreateStatusTransition =
 export const onUpdateStatusTransition =
   /* GraphQL */ `subscription OnUpdateStatusTransition(
   $filter: ModelSubscriptionStatusTransitionFilterInput
+  $owner: String
 ) {
-  onUpdateStatusTransition(filter: $filter) {
+  onUpdateStatusTransition(filter: $filter, owner: $owner) {
     id
     fromStatusId
     toStatusId
@@ -497,6 +676,7 @@ export const onUpdateStatusTransition =
       description
       color
       step
+      owner
       createdAt
       updatedAt
       __typename
@@ -507,10 +687,12 @@ export const onUpdateStatusTransition =
       description
       color
       step
+      owner
       createdAt
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
@@ -523,8 +705,9 @@ export const onUpdateStatusTransition =
 export const onDeleteStatusTransition =
   /* GraphQL */ `subscription OnDeleteStatusTransition(
   $filter: ModelSubscriptionStatusTransitionFilterInput
+  $owner: String
 ) {
-  onDeleteStatusTransition(filter: $filter) {
+  onDeleteStatusTransition(filter: $filter, owner: $owner) {
     id
     fromStatusId
     toStatusId
@@ -534,6 +717,7 @@ export const onDeleteStatusTransition =
       description
       color
       step
+      owner
       createdAt
       updatedAt
       __typename
@@ -544,10 +728,12 @@ export const onDeleteStatusTransition =
       description
       color
       step
+      owner
       createdAt
       updatedAt
       __typename
     }
+    owner
     createdAt
     updatedAt
     __typename
