@@ -1,12 +1,8 @@
-import { Button } from "@aws-amplify/ui-react";
 import Blurb from "components/blurb/blurb";
-import { useCreateIdea } from "hooks/idea/useCreateIdea";
-import { useIdeas } from "hooks/idea/useIdeas";
+
+import { IdeasSection } from "../../ideaSection/IdeasSection";
 
 function Home() {
-  const { mutateAsync: createIdea } = useCreateIdea();
-  const { ideas } = useIdeas();
-
   return (
     <>
       <Blurb
@@ -21,49 +17,7 @@ function Home() {
         image="https://stlouis.citizenlab.co/uploads/e0d13d54-d706-4d53-af85-2f6c48c4c2fe/project/header_bg/1c7aa1cb-7c75-4293-8f9b-37fa72a73657/large_afd08489-8a69-4e30-9591-974d82716d46.jpeg"
       />
       {/* banner  with text on the left button on the right*/}
-      <div className="flex justify-between items-center bg-[#033d8b] p-8">
-        <h2 className="text-2xl font-bold text-white">
-          Share your innovative ideas!
-        </h2>
-        <div className="flex justify-end">
-          <Button
-            variation="primary"
-            className="!text-sm"
-            onClick={() => {
-              createIdea({
-                input: {
-                  attachments: [],
-                  description: "test",
-                  name: "test",
-                  // statusId: "1",
-                  // userIdeasId: "me",
-                  // statusIdeasId: "1",
-                },
-              });
-            }}
-          >
-            Submit an Idea
-          </Button>
-        </div>
-      </div>
-      <div className="flex gap-2 flex-col p-10">
-        {ideas?.map((idea) => {
-          return (
-            <div
-              key={idea.id}
-              className="bg-slate-200 pb-2 outline outline-2 outline-blue-400 h-20"
-            >
-              <span>I AM AN IDEA!</span>
-              <h2>{idea.id}</h2>
-              <h3>{idea.name}</h3>
-              <p>{idea.description}</p>
-              <p>{idea.statusId}</p>
-              <p>{idea.userIdeasId}</p>
-              <p>{idea.statusIdeasId}</p>
-            </div>
-          );
-        })}
-      </div>
+      <IdeasSection />
     </>
   );
 }

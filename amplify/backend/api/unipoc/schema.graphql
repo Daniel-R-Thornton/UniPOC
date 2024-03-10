@@ -19,7 +19,7 @@ type User
     @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admin"] }])
   ideas: [Idea] @hasMany
   Comments: [IdeaComment] @hasMany(indexName: "commentsByUser", fields: ["id"])
-  votes: [IdeaVote] @hasMany(indexName: "votesByUser", fields: ["id"])
+  Votes: [IdeaVote] @hasMany(indexName: "votesByUser", fields: ["id"])
   createdAt: AWSDateTime!
   avatar: String
   owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }])
@@ -45,7 +45,7 @@ type Idea
   statusId: ID
   Status: Status @belongsTo(fields: ["statusId"])
   Comments: [IdeaComment] @hasMany(indexName: "commentsByIdea", fields: ["id"])
-  votes: [IdeaVote] @hasMany(indexName: "votesByIdea", fields: ["id"])
+  Votes: [IdeaVote] @hasMany(indexName: "votesByIdea", fields: ["id"])
   owner: String
     @auth(
       rules: [
@@ -73,7 +73,7 @@ type IdeaComment
   Idea: Idea @belongsTo(fields: ["ideaId"])
   User: User @belongsTo(fields: ["userId"])
   ParentComment: IdeaComment @belongsTo(fields: ["parentCommentId"])
-  childComments: [IdeaComment] @hasMany(fields: ["parentCommentId"])
+  ChildComments: [IdeaComment] @hasMany(fields: ["parentCommentId"])
   owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }])
 }
 
@@ -91,6 +91,7 @@ type IdeaVote
   id: ID!
   ideaId: ID! @index(name: "votesByIdea")
   userId: ID! @index(name: "votesByUser")
+  value: Int!
   Idea: Idea @belongsTo(fields: ["ideaId"])
   User: User @belongsTo(fields: ["userId"])
   owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }])

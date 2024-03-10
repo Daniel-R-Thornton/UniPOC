@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./pages/app/app";
 import "./index.css";
+// 1. import `ChakraProvider` component
+import { ChakraProvider } from "@chakra-ui/react";
+
 // import the aws ui css
 
 import "@aws-amplify/ui-react/styles.css";
@@ -21,9 +24,11 @@ Amplify.configure(awsExports);
 ReactDOM.createRoot(document.getElementById("root")!).render(
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  <QueryClientProvider client={queryClient}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </QueryClientProvider>
+  <ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </QueryClientProvider>
+  </ChakraProvider>
 );

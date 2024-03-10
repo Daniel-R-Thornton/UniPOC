@@ -18,7 +18,7 @@ export const getIdeaWithDepth =
       nextToken
       __typename
     }
-    votes( limit: 100) {
+    Votes( limit: 100) {
       items {
         id
       }
@@ -35,7 +35,7 @@ export const getIdeaWithDepth =
 }
 ` as GeneratedQuery<APITypes.GetIdeaQueryVariables, APITypes.GetIdeaQuery>;
 export const getIdeaWithDepthWithoutOwner =
-  /* GraphQL */ `query GetIdeaWithDepth($id: ID!) {
+  /* GraphQL */ `query getIdeaWithDepthWithoutOwner($id: ID!) {
   getIdea(id: $id) {
     id
     name
@@ -48,7 +48,7 @@ export const getIdeaWithDepthWithoutOwner =
       nextToken
       __typename
     }
-    votes( limit: 100) {
+    Votes( limit: 100) {
       items {
         id
       }
@@ -63,7 +63,8 @@ export const getIdeaWithDepthWithoutOwner =
   }
 }
 ` as GeneratedQuery<APITypes.GetIdeaQueryVariables, APITypes.GetIdeaQuery>;
-export const listIdeasWithoutOwners = /* GraphQL */ `query ListIdeas(
+export const listIdeasWithoutOwners =
+  /* GraphQL */ `query ListIdeasWithoutOwners(
   $filter: ModelIdeaFilterInput
   $limit: Int
   $nextToken: String
@@ -81,7 +82,7 @@ export const listIdeasWithoutOwners = /* GraphQL */ `query ListIdeas(
       nextToken
       __typename
     }
-    votes( limit: 100) {
+    Votes( limit: 100) {
       items {
         id
       }

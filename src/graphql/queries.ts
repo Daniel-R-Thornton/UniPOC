@@ -21,7 +21,7 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -76,7 +76,7 @@ export const getIdea = /* GraphQL */ `query GetIdea($id: ID!) {
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -154,7 +154,7 @@ export const getIdeaComment = /* GraphQL */ `query GetIdeaComment($id: ID!) {
       updatedAt
       __typename
     }
-    childComments {
+    ChildComments {
       nextToken
       __typename
     }
@@ -264,6 +264,7 @@ export const getIdeaVote = /* GraphQL */ `query GetIdeaVote($id: ID!) {
     id
     ideaId
     userId
+    value
     Idea {
       id
       name
@@ -307,6 +308,7 @@ export const listIdeaVotes = /* GraphQL */ `query ListIdeaVotes(
       id
       ideaId
       userId
+      value
       owner
       createdAt
       updatedAt
@@ -338,6 +340,7 @@ export const ideaVotesByIdeaId = /* GraphQL */ `query IdeaVotesByIdeaId(
       id
       ideaId
       userId
+      value
       owner
       createdAt
       updatedAt
@@ -369,6 +372,7 @@ export const ideaVotesByUserId = /* GraphQL */ `query IdeaVotesByUserId(
       id
       ideaId
       userId
+      value
       owner
       createdAt
       updatedAt

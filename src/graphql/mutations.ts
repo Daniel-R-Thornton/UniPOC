@@ -97,7 +97,7 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -128,7 +128,7 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -159,7 +159,7 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -199,7 +199,7 @@ export const createIdea = /* GraphQL */ `mutation CreateIdea(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -240,7 +240,7 @@ export const updateIdea = /* GraphQL */ `mutation UpdateIdea(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -281,7 +281,7 @@ export const deleteIdea = /* GraphQL */ `mutation DeleteIdea(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -341,7 +341,7 @@ export const createIdeaComment = /* GraphQL */ `mutation CreateIdeaComment(
       updatedAt
       __typename
     }
-    childComments {
+    ChildComments {
       nextToken
       __typename
     }
@@ -399,7 +399,7 @@ export const updateIdeaComment = /* GraphQL */ `mutation UpdateIdeaComment(
       updatedAt
       __typename
     }
-    childComments {
+    ChildComments {
       nextToken
       __typename
     }
@@ -457,7 +457,7 @@ export const deleteIdeaComment = /* GraphQL */ `mutation DeleteIdeaComment(
       updatedAt
       __typename
     }
-    childComments {
+    ChildComments {
       nextToken
       __typename
     }
@@ -479,6 +479,7 @@ export const createIdeaVote = /* GraphQL */ `mutation CreateIdeaVote(
     id
     ideaId
     userId
+    value
     Idea {
       id
       name
@@ -520,6 +521,7 @@ export const updateIdeaVote = /* GraphQL */ `mutation UpdateIdeaVote(
     id
     ideaId
     userId
+    value
     Idea {
       id
       name
@@ -561,6 +563,7 @@ export const deleteIdeaVote = /* GraphQL */ `mutation DeleteIdeaVote(
     id
     ideaId
     userId
+    value
     Idea {
       id
       name

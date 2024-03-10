@@ -24,7 +24,7 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -55,7 +55,7 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -86,7 +86,7 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -126,7 +126,7 @@ export const onCreateIdea = /* GraphQL */ `subscription OnCreateIdea(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -167,7 +167,7 @@ export const onUpdateIdea = /* GraphQL */ `subscription OnUpdateIdea(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -208,7 +208,7 @@ export const onDeleteIdea = /* GraphQL */ `subscription OnDeleteIdea(
       nextToken
       __typename
     }
-    votes {
+    Votes {
       nextToken
       __typename
     }
@@ -269,7 +269,7 @@ export const onCreateIdeaComment =
       updatedAt
       __typename
     }
-    childComments {
+    ChildComments {
       nextToken
       __typename
     }
@@ -328,7 +328,7 @@ export const onUpdateIdeaComment =
       updatedAt
       __typename
     }
-    childComments {
+    ChildComments {
       nextToken
       __typename
     }
@@ -387,7 +387,7 @@ export const onDeleteIdeaComment =
       updatedAt
       __typename
     }
-    childComments {
+    ChildComments {
       nextToken
       __typename
     }
@@ -409,6 +409,7 @@ export const onCreateIdeaVote = /* GraphQL */ `subscription OnCreateIdeaVote(
     id
     ideaId
     userId
+    value
     Idea {
       id
       name
@@ -450,6 +451,7 @@ export const onUpdateIdeaVote = /* GraphQL */ `subscription OnUpdateIdeaVote(
     id
     ideaId
     userId
+    value
     Idea {
       id
       name
@@ -491,6 +493,7 @@ export const onDeleteIdeaVote = /* GraphQL */ `subscription OnDeleteIdeaVote(
     id
     ideaId
     userId
+    value
     Idea {
       id
       name

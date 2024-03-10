@@ -1,7 +1,7 @@
 import { QueryFunctionContext } from "@tanstack/react-query";
 import { GetIdeaQuery } from "../../../API";
 import { getIdea } from "../../../graphql/queries";
-import { isApiError } from "src/infrastructure/ApiError";
+import { isApiError } from "../../../infrastructure/ApiError";
 import { GraphQLResult, generateClient } from "aws-amplify/api";
 import { fetchAuthSession } from "aws-amplify/auth";
 
